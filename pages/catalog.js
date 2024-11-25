@@ -83,7 +83,7 @@ function displayCards(data) {
 // все секции catalog (css) 
 document.addEventListener('DOMContentLoaded', function() {
     const attractionsContainer = document.getElementById('attractions');
-    attractionsContainer.innerHTML = ''; 
+    // attractionsContainer.innerHTML = ''; 
     fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
 
         .then(response => response.json())
@@ -91,10 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             data.forEach(attraction => {
 
-                const attractionElement = document.createElement('div');
-                attractionElement.className = 'attraction';
-                attractionElement.textContent = attraction.name;
-                attractionElement.innerHTML = `
+                const attractionElementPageCatalog = document.createElement('div');
+                attractionElementPageCatalog.className = 'attractioN';
+                attractionElementPageCatalog.textContent = attraction.name;
+                // document.body.innerHTML = ''
+                // document.body.innerHTML += attractionElementPageCatalog
+                attractionElementPageCatalog.innerHTML =  `
                                     
                 <div class="search-box">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
@@ -114,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8a2946d35bd7706e85ae695793af5773de8985ce103013f41d11e145a0344ee3&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
                 `;
 
-                attractionElement.addEventListener('click', () => {
+                attractionElementPageCatalog.addEventListener('click', () => {
                     //URL обнов.
                     const url = new URL(window.location.href);
                     url.searchParams.set('id', attraction.id);
@@ -122,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     showDetails(attraction.id);
                 });
-                attractionsContainer.appendChild(attractionElement);
+                attractionsContainer.appendChild(attractionElementPageCatalog);
             });            
 
             // query 
@@ -283,7 +285,7 @@ const CatalogPage = () => {
     <h1>Подробная информация</h1>
     <div id="details" class="details"></div>
 
-
+attr
     <section class="str">
     <div class="str__str">
         <button class="str__btn"></button>
@@ -311,15 +313,23 @@ const CatalogPage = () => {
     </div>
 </section>
     
-    ` :     // 1 без css 
+    ` :
+    document.body.innerHTML = ''     // 1 без css 
     ` 
     <h1>${attraction.description}</h1>
     <img src="${attraction.imageUrl}"
     <h2>fefe</h2>   
     `;
+
+    
+
+    if (document.getElementById('catalog-page12')) {
+        document.body.innerHTML = ''
+        document.body.innerHTML += page12
+    }
+    else (innerHTML = '')
  
-    document.body.innerHTML = ''
-    document.body.innerHTML += page12
+    
 
     const catalogBtn = document.getElementById('contactBtn')
 

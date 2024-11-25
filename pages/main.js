@@ -206,7 +206,7 @@ const createMainPage = () => {
                 <ul class="footer__contacts">
                     <h1>Контакты:</h1>
                     <div class="aa">
-                        <a class="footer__btn" href="/contacts.html">Подробная информация</a>
+                        <a class="footer__btn" href="http://127.0.0.1:5500/index.html?page=contacts">Подробная информация</a>
                     </div>
                     <li class="footer__contact1">
                         <img src="./assets/img/vol.png" alt="img" class="footer__vol">
