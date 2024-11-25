@@ -83,7 +83,7 @@ const createMainPage = () => {
 
     <section class="load">
     <div class='demoPreloader' id='demoPreloader'> -->
-    <img src='/assets/img/728.gif' alt='preloader'>
+    <img src='./assets/img/728.gif' alt='preloader'>
     </div>
     </section>
 
@@ -91,7 +91,7 @@ const createMainPage = () => {
     <header class="header">
         
         <div class="header__logo">
-        <a href="/index.html" class="heder__logo"><img src="/assets/img/logo.svg" alt="img"></a>
+        <a href="./index.html" class="heder__logo"><img src="/assets/img/logo.svg" alt="img"></a>
     </div>
         <div class="container">
             <div class="header__menu menu">
@@ -225,8 +225,8 @@ const createMainPage = () => {
             <div class="cc">
                 <a href="#" class="footer__logo">
                 <img src="./assets/img/logo.spotify.png" alt="Img" class="footer__img">
-                <img src="/assets/img/logo.inst.png" alt="Img" class="footer__img1">
-                <img src="/assets/img/logo.ds.png" alt="Img" class="footer__img2">
+                <img src="./assets/img/logo.inst.png" alt="Img" class="footer__img1">
+                <img src="./assets/img/logo.ds.png" alt="Img" class="footer__img2">
             </a>
         </div> 
     </footer>
