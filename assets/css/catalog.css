@@ -623,6 +623,7 @@ li {
   min-width: 600px;
   max-width: 500px;
   margin-left: -200px;
+  margin-bottom: 20px;
 }
 @media (max-width: 420px) {
   .containerId__text {
@@ -638,8 +639,8 @@ li {
   box-shadow: 8px 8px 16px #333;
   margin-left: -250px;
   position: relative;
-  left: 100px;
-  width: 500px;
+  left: 40px;
+  width: 600px;
 }
 @media (max-width: 420px) {
   .containerId__map {
