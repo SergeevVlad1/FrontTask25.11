@@ -573,6 +573,60 @@ li{
     margin-top: 20px;
   }
 
+
+  
+.containerId__img{
+    display: none;
+}
+
+.main__Container-section{
+    display: none;
+}
+
+.main__search{
+    display: none;
+}
+.pagination{
+    display: none;
+}
+
+.footershow{
+    display: none;
+}
+
+.currentPage{
+    display: none;
+}
+
+.nextBtn{
+    display: none;
+}
+
+.previousBtn{
+    display: none;
+}
+
+
+.filter{
+    display: none;
+}
+
+.card{
+    display: none;
+}
+
+.filter-title{
+    display: none;
+}
+
+.search-box{
+    display: none;
+}
+
+.main__input{
+    display: none;
+}
+
   &__input_title1{
     display: flex;
     flex-direction: column;

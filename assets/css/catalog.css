@@ -459,6 +459,45 @@ li {
   padding-top: 10px;
   margin-top: 20px;
 }
+.modal .containerId__img {
+  display: none;
+}
+.modal .main__Container-section {
+  display: none;
+}
+.modal .main__search {
+  display: none;
+}
+.modal .pagination {
+  display: none;
+}
+.modal .footershow {
+  display: none;
+}
+.modal .currentPage {
+  display: none;
+}
+.modal .nextBtn {
+  display: none;
+}
+.modal .previousBtn {
+  display: none;
+}
+.modal .filter {
+  display: none;
+}
+.modal .card {
+  display: none;
+}
+.modal .filter-title {
+  display: none;
+}
+.modal .search-box {
+  display: none;
+}
+.modal .main__input {
+  display: none;
+}
 .modal__input_title1 {
   display: flex;
   flex-direction: column;
