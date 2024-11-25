@@ -1,9 +1,9 @@
-window.onload = function() {
+window.onload = function () {
     document.querySelector('#demoPreloader').style.display = 'none';
 };
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const slider = document.querySelector('.slider');
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
@@ -12,44 +12,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentIndex = 0;
 
-    
+
     function updateSlider() {
-        
-    const offset = -currentIndex * 500;
-    
-    slider.style.transform = `translateX(${offset}px)`;
 
-    
+        const offset = -currentIndex * 500;
+
+        slider.style.transform = `translateX(${offset}px)`;
+
+
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    prevBtn.addEventListener('click', () => {
+
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            updateSlider();
+        }
+    });
+
     dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
+        dot.addEventListener('click', () => {
+
+            currentIndex = index;
+            updateSlider();
+        });
     });
-}
 
-prevBtn.addEventListener('click', () => {
-    
-    if (currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-    }
-});
-
-nextBtn.addEventListener('click', () => {
-    
-    if (currentIndex < slides.length - 1) {
-        currentIndex++;
-        updateSlider();
-    }
-});
-
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        
-        currentIndex = index;
-        updateSlider();
-    });
-});
-
-updateSlider();
+    updateSlider();
 });
 
 
@@ -66,15 +66,15 @@ const createMainPage = () => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        
 
     <title>CityDiscvoreries</title>
 </head>
