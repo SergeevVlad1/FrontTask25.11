@@ -1,0 +1,174 @@
+
+
+// .demoPreloader {
+//     background: rgba(255, 255, 255, 0.7);
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     z-index: 99999;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+
+
+// #card-container {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
+
+// .card {
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   margin: 10px;
+//   width: calc(33% - 20px); /* Three cards per row */
+// }
+
+// #pagination {
+//   margin-top: 20px;
+// }
+
+// #pagination button {
+//   margin: 0 5px;
+// }
+
+// #pagination button.active {
+//   background-color: #ccc;
+//   cursor: default;
+// }
+
+// #loading {
+//   display: none;
+//   text-align: center;
+//   font-size: 18px;
+//   color: #333;
+// }
+
+// .nav-toggle2{
+//     color: black;
+//     background-color: aquamarine;
+// }
+
+
+// .btn{
+//     text-decoration: none;
+//     text-align: center;
+//     width: 250px;
+//     padding: 20px 0;
+//     border: solid 1px #004F72;
+//     border-radius: 4px;
+//     font: 20px Arial, Helvetica, sans-serif;
+//     font-weight: bold;
+//       color: #E5FFFF;
+//     background-color: #3BA4C7;
+//     background-image: linear-gradient(top, #3BA4C7 0% ,#1982A5 100%);
+//        box-shadow: 0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;
+//       outline: none;
+// }
+// #card-container {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
+
+// .card {
+//   border: 1px solid #ccc;
+//   padding: 10px;
+//   margin: 10px;
+//   width: calc(33% - 20px); /* Three cards per row */
+// }
+
+// #pagination {
+//   margin-top: 20px;
+// }
+
+// #pagination button {
+//   margin: 0 5px;
+// }
+
+// #pagination button.active {
+//   background-color: #ccc;
+//   cursor: default;
+// }
+
+// #loading {
+//   display: none;
+//   text-align: center;
+//   font-size: 18px;
+//   color: #333;
+// }
+
+
+// .modal {
+//     display: none; 
+//     position: fixed;  
+//     left: 0;
+//     top: 0;
+//     width: 100%; 
+//     height: 100%;
+//     overflow: auto; 
+//     background-color: red; 
+//     background-color: rgba(213, 19, 19, 0.4);
+  
+//   &__input_title{
+//     display: flex;
+//     flex-direction: column;
+//     padding-top: 10px;
+//     margin-top: 20px;
+//   }
+
+//   &__input_title1{
+//     display: flex;
+//     flex-direction: column;
+//     padding-top: 10px;
+//     margin-top: 20px;
+//   }
+
+
+//   &__content {
+//     align-items: center;
+//     background-color: red;
+//     margin: 15% auto; /* 15% from the top and centered */
+//     padding: 20px;
+//     top: 150px;
+//     position: relative;
+//     border: 1px solid #888;
+//     width: 80%; /* Could be more or less, depending on screen size */
+//   }
+  
+//   /* The Close Button */
+//   &__close {
+//     color: #aaa;
+//     float: right;
+//     font-size: 28px;
+//     font-weight: bold;
+//   }
+  
+//   &__close:hover,
+//   &__close:focus {
+//     color: black;
+//     text-decoration: none;
+//     cursor: pointer;
+//   }
+
+
+// }
+
+
+// .show{
+//     display: block;
+// }
+
+// .content {
+//     margin-top: 20px;
+//     padding: 20px;
+//     border: solid 1px rgb(214, 218, 219);
+//     border-radius: 4px;
+//     font-family: Calibri, 'Trebuchet MS', sans-serif;
+// }
+   
+// .hidden {
+//     display: none; // скрывает текст
+// }
