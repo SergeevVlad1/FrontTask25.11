@@ -1021,3 +1021,23 @@
 //                 });
 //                 attractionsContainer.appendChild(attractionElement);
 //             });
+
+
+
+
+
+
+
+// <section class="filter">
+//     <div class="filter__container">
+//         <div class="filter__main">
+//             <button class="filter__btn" onclick="filterFunction()"><img src="/assets/img/catalog.filter2.png" alt="Img"></button>
+//                 <div class="filter__nav-content" id="filter__cont">
+//                     <select id="mySelect" class="filter-select" onchange="filterItems()">
+//                         <option id="all" value="all">Все категории</option>
+//                         <option id="Bla" value="category1">Парки</option>
+//                         <option value="category2">Категория 2</option>
+//                         <option value="category3">Категория 3</option>
+//                     </select>
+//                 </div>  
+//         </section>

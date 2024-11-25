@@ -184,15 +184,13 @@ new google.maps.Marker({
 
 
 const CatalogPage = () => {
-    mainPage.innerHTML = ''
+    mainPage.innerHTML = 'edededede'
     fetch('https://64f732e69d775408495348ae.mockapi.io/api/v1/places')
     
     const attractionId = new URLSearchParams(window.location.search).get('id');
     const page12 = attractionId === null ? 
-
+    
     `    
-
-
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/catalog.css">
@@ -252,6 +250,19 @@ const CatalogPage = () => {
 
 
 
+<section class="filter">
+    <div class="filter__container">
+        <div class="filter__main">
+            <button class="filter__btn" onclick="filterFunction()"><img src="/assets/img/catalog.filter2.png" alt="Img"></button>
+                <div class="filter__nav-content" id="filter__cont">
+                    <select id="mySelect" class="filter-select" onchange="filterItems()">
+                        <option id="all" value="all">Все категории</option>
+                        <option id="Bla" value="category1">Парки</option>
+                        <option value="category2">Категория 2</option>
+                        <option value="category3">Категория 3</option>
+                    </select>
+                </div>  
+        </section>
 
     <div class='attractions' id="attractions"></div>
     <div class='attractionsBtn' id="attractionsBtn"></div>
@@ -304,6 +315,7 @@ attr
     document.body.innerHTML = ''     // 1 без css 
     ` 
     <h1>${attraction.description}</h1>
+
     <img src="${attraction.imageUrl}"
     <h2>fefe</h2>   
     `;
