@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let attractionsData9 = [];
 
-  // Функция для отображения карточек
+
   function displayAttractions1(data) {
       attractionsContainer1.innerHTML = '';
       data.forEach(attraction => {

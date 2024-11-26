@@ -159,10 +159,11 @@ async function ContactsPage() {
     <button class="success-btn" onclick="showSuccessMessage()">Отправить</button>
         </div>
     </div>                     
-</div>
+    </div>
      
 
     <section class="footer">
+        
         <div class="footer__box">
             <ul class="footer__contacts">
                 <img src="./assets/img/black.logo.png" alt="img">

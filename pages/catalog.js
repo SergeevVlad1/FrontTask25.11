@@ -333,7 +333,7 @@ attr
     const catalogBtn = document.getElementById('contactBtn')
 
     contactBtn.addEventListener('click', () => {
-        window.location.href = '?page=dw'  
+        window.location.href = '?page=contact'  
         checkPathAndRenderPage()
     })
 }
@@ -342,23 +342,23 @@ const searchInput = document.querySelector('.main__input')
 const cardsList = document.querySelector('main__all-sections')
 const cards = document.querySelectorAll('.main__card')
 
-searchInput.addEventListener('input', (event) => {
-    console.log(event.target.value)
-    if(event.target.value.length) {
-        cards.forEach(card => {
-            card.style.display = 'none'
+// searchInput.addEventListener('input', (event) => {
+//     console.log(event.target.value)
+//     if(event.target.value.length) {
+//         cards.forEach(card => {
+//             card.style.display = 'none'
             
-            if(card.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
-                card.style.display = 'block'
+//             if(card.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
+//                 card.style.display = 'block'
                 
-                console.log('true')
-            }
-        })
-    } else {
-        cards.forEach(card => {
-            card.style.display = 'block'
-        })
-    }
+//                 console.log('true')
+//             }
+//         })
+//     } else {
+//         cards.forEach(card => {
+//             card.style.display = 'block'
+//         })
+//     }
     
-})
+// })
 
