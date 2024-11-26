@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
-  const apiUrl1 = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
+  const apiUrl1 = './https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
   const attractionsContainer1 = document.getElementById('attractions1');
   const categoryFilter = document.getElementById('category');
 
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
           const card12 = document.createElement('div');
           card12.className = 'card';
           card12.innerHTML = `
-              <a class="filter-title" href="http://127.0.0.1:5500/index.html?page=catalog&id=${attraction.id}"</a>   <h3>${attraction.name}</h3>
+              <a class="filter-title" href="./http://127.0.0.1:5500/index.html?page=catalog&id=${attraction.id}"</a>   <h3>${attraction.name}</h3>
               <p>${attraction.description}</p>
           `;
           attractionsContainer1.appendChild(card12);
