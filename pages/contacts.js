@@ -134,7 +134,8 @@ async function ContactsPage() {
 
                         <!-- <button id="myBtn">Сообщение:</button> -->
 
-                         <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>
+                         
+                        <button class="open-modal-btn" onclick="openModal()">Связаться с нами</button>
 
                         <div id="myModadel" class="modal">
                         
