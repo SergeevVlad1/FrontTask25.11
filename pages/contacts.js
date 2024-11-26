@@ -31,7 +31,7 @@ async function ContactsPage() {
 
     <section class="load">
         <div class='demoPreloader' id='demoPreloader'>
-            <img src='/assets/img/728.gif' alt='preloader'>
+            <img src='./assets/img/728.gif' alt='preloader'>
         </div>
     </section>
 
@@ -39,7 +39,7 @@ async function ContactsPage() {
     <header class="header">
        
         <div class="header__logo">
-            <a href="/index.html"><img src="/assets/img/black.logo.png" class="header__logo" alt="img"></a>
+            <a href="/index.html"><img src="./assets/img/black.logo.png" class="header__logo" alt="img"></a>
         </div>
         <div class="container">
             <div class="header__menu menu">
@@ -60,7 +60,7 @@ async function ContactsPage() {
             </div> 
 
             <!-- <div class="header__mini-background">
-                <img src="/assets/img/contacts.back.jpg" alt="Img" height="300px" width="1900px">
+                <img src="./assets/img/contacts.back.jpg" alt="Img" height="300px" width="1900px">
             </div>   -->
             
     </header>
@@ -93,17 +93,17 @@ async function ContactsPage() {
                         
                     
                     <div class="about__img-txt1">
-                        <img src="/assets/img/icons.mob.png" alt="Img" class="about__img1">
+                        <img src="./assets/img/icons.mob.png" alt="Img" class="about__img1">
                         <a href="#" class="ab">+7(9)777-77-77</a>
                         
                         <div class="about__img-txt2">
-                            <img src="/assets/img/icons.mail.png" alt="Img" class="about__img2">
+                            <img src="./assets/img/icons.mail.png" alt="Img" class="about__img2">
                             <a href="#" class="ab">svv.kaz@mail.ru</a>
                         <div class="about__img-txt3">
-                            <img src="/assets/img/icons.tg.png" alt="Img" class="about__img3">
+                            <img src="./assets/img/icons.tg.png" alt="Img" class="about__img3">
                             <a href="#" class="ab">@Volody_a</a>
                             <div class="about__img-txt4">
-                                <img src="/assets/img/icons.vk.png" alt="Img" class="about__img4">
+                                <img src="./assets/img/icons.vk.png" alt="Img" class="about__img4">
                                 <a href="#" class="ab">id:653067750</a>
                             </div>
                                 </div>
@@ -247,15 +247,15 @@ async function ContactsPage() {
         
         <div class="footer__box">
             <ul class="footer__contacts">
-                <img src="/assets/img/black.logo.png" alt="img">
+                <img src="./assets/img/black.logo.png" alt="img">
             </ul>
         </div>
         
         <div class="cc">
             <a href="#" class="footer__logo">
             <img src="./assets/img/logo.spotify.png" alt="Img" class="footer__img">
-            <img src="/assets/img/logo.inst.png" alt="Img" class="footer__img1">
-            <img src="/assets/img/logo.ds.png" alt="Img" class="footer__img2">
+            <img src="./assets/img/logo.inst.png" alt="Img" class="footer__img1">
+            <img src="./assets/img/logo.ds.png" alt="Img" class="footer__img2">
         </a>
     </div>
     <div class="footer__text">
