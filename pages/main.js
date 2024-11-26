@@ -87,11 +87,10 @@ const createMainPage = () => {
     </div>
     </section>
 
-
     <header class="header">
         
         <div class="header__logo">
-        <a href="./index.html" class="heder__logo"><img src="/assets/img/logo.svg" alt="img"></a>
+        <a href="/index.html" class="heder__logo"><img src="./assets/img/logo.svg" alt="img"></a>
     </div>
         <div class="container">
             <div class="header__menu menu">
@@ -133,10 +132,10 @@ const createMainPage = () => {
     
     <div class="slider-container">
         <div class="slider">
-            <div class="slide"><img src="/assets/img/images.1.svg" alt="Slide 1"></div>
-            <div class="slide"><img src="/assets/img/images.2.svg" alt="Slide 2"></div>
-            <div class="slide"><img src="/assets/img/images.3.svg" alt="Slide 3"></div>
-            <div class="slide"><img src="/assets/img/images.1.svg" alt="Slide 4"></div>
+            <div class="slide"><img src="./assets/img/images.1.svg" alt="Slide 1"></div>
+            <div class="slide"><img src="./assets/img/images.2.svg" alt="Slide 2"></div>
+            <div class="slide"><img src="./assets/img/images.3.svg" alt="Slide 3"></div>
+            <div class="slide"><img src="./assets/img/images.1.svg" alt="Slide 4"></div>
         </div>
         <div class="slider-controls">
             <button class="prev-btn">←</button>
@@ -153,14 +152,14 @@ const createMainPage = () => {
     <section class="visit">
             <div class="visit__section">
                 <ul class="visit__box1">
-                    <div class="visit__mini-container">
-                        <div class="visit__img">
+                    <div class=".visit__mini-container">
+                        <div class=".visit__img">
                     <img src="./assets/img/img1.png" class="visit__img" alt="img" width="950px">
                 </div>
-                    <div class="visit__text-box">
-                    <div class="visit__title"><h3>Места которые вы можете посетить:</h3>    </div>
-                    <div class="visit__text"><h1>Храм Сенсодзи (浅草寺): Самый старый храм в Токио, построенный в 645 году. Помимо красочных ворот Каминаримон, посетители могут пройти по оживленной улице Накамисе-дори, полной сувенирных лавок и ресторанов, и насладиться тишиной храмового комплекса.</h1></div>  
-                        <a href="#" class="visit__btn">Узнать больше</a>
+                    <div class=".visit__text-box">
+                    <div class=".visit__title"><h3>Места которые вы можете посетить:</h3>    </div>
+                    <div class=".visit__text"><h1>Храм Сенсодзи (浅草寺): Самый старый храм в Токио, построенный в 645 году. Помимо красочных ворот Каминаримон, посетители могут пройти по оживленной улице Накамисе-дори, полной сувенирных лавок и ресторанов, и насладиться тишиной храмового комплекса.</h1></div>  
+                        <a href="#" class=".visit__btn">Узнать больше</a>
                         
                 </div>
             </div>
