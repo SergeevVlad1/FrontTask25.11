@@ -184,7 +184,7 @@ new google.maps.Marker({
 
 
 const CatalogPage = () => {
-    mainPage.innerHTML = 'edededede'
+    mainPage.innerHTML = ''
     fetch('https://64f732e69d775408495348ae.mockapi.io/api/v1/places')
     
     const attractionId = new URLSearchParams(window.location.search).get('id');

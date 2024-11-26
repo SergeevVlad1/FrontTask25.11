@@ -109,7 +109,7 @@ const createMainPage = () => {
                     
                 </li>
                 <li class="menu__item">
-                    <a class="menu__link"  href="http://127.0.0.1:5500/index.html?page=catalog">Достопримечательности</a>
+                    <a id='catalogBtn' class="menu__link"  href="?page=catalog">Достопримечательности</a>
                 </li>
             </ul>
         </nav>
@@ -152,8 +152,8 @@ const createMainPage = () => {
     <section class="visit">
             <div class="visit__section">
                 <ul class="visit__box1">
-                    <div class=".visit__mini-container">
-                        <div class=".visit__img">
+                    <div class=".visit__mini-contaner">
+                       <div class="visit__img">
                     <img src="./assets/img/img1.svg" class="visit__img" alt="img" width="950px">
                 </div>
                     <div class=".visit__text-box">
