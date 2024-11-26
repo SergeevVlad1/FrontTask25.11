@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <li class="main__card">
                 <div class="main__container-section">
-                <img onclick="download" class='containerId__img' src=${attraction.imageUrl}> 
+                <img onclick="download" class='containerId__img' src=./${attraction.imageUrl}> 
                 
                 <a class="main__search" href="#">${attraction.name}</a>
                     </li>
                 </ul>
                 </div>
-                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8a2946d35bd7706e85ae695793af5773de8985ce103013f41d11e145a0344ee3&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                <script type="text/javascript" charset="utf-8" async src="./https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8a2946d35bd7706e85ae695793af5773de8985ce103013f41d11e145a0344ee3&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
                 `;
 
                 attractionElementPageCatalog.addEventListener('click', () => {
@@ -150,7 +150,7 @@ const detailsContainer = document.getElementById('attractions');
         <div class="containerId">
                 <div class='containerId__title'> <h1>${attraction.name}</h1>
                 </div>
-                <img class='containerId__img' src=${attraction.imageUrl}>
+                <img class='containerId__img' src=./${attraction.imageUrl}>
                 <h2 class='containerId__text'>${attraction.description}</h2>
                     <div class='containerId__map'> ${attraction.location}</div>
             <div class='modal__title__img'>
@@ -193,26 +193,26 @@ const CatalogPage = () => {
     `    
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/catalog.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/catalog.css">
+    <link rel="preconnect" href="./https://fonts.googleapis.com"> 
+<link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
+<link href="./https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="./https://fonts.googleapis.com">
+<link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
+<link href="./https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="./https://fonts.googleapis.com">
+<link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
+<link href="./https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     <section class="load">
         <div class='demoPreloader' id='demoPreloader'>
-    <img src='/assets/img/728.gif' alt='preloader'>
+    <img src='./assets/img/728.gif' alt='preloader'>
     </div>
     </section>
 
     <header class="header">
         <div class="header__logo">
-            <a href="/index.html"><img src="/assets/img/black.logo.png" alt="img"></a>
+            <a href="./index.html"><img src="./assets/img/black.logo.png" alt="img"></a>
         </div>
         <div class="container">
             <div class="header__icon">
@@ -224,17 +224,17 @@ const CatalogPage = () => {
             <ul id="itemList" class="header__menu-list">
                 
                 <li class="header__menu-link">
-                    <a href="/index.html">На главную</a>
+                    <a href="./index.html">На главную</a>
                 </li>
                 <li class="header__menu-link">
-                    <a href="/contacts.html">Контакты</a>
+                    <a href="./contacts.html">Контакты</a>
                 </li>
                 <li class="header__menu-link1">
-                    <a href="#"><img src="/assets/img/catalog.lupa.png" alt="Img"></a>
+                    <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
                 </li>
         <nav class="menu__body">
             <li class="header__menu-link2">
-                <a href="#"><img src="/assets/img/catalog.filter2.png" alt="Img"></a>        
+                <a href="#"><img src="./assets/img/catalog.filter2.png" alt="Img"></a>        
                     <ul class="menu__list">
                         <li class="menu__item"><a href="#" class="menu__link">уауауа</a></li>
                         <li class="menu__item"><a href="#" class="menu__link">акак</a></li>
@@ -253,7 +253,7 @@ const CatalogPage = () => {
 <section class="filter">
     <div class="filter__container">
         <div class="filter__main">
-            <button class="filter__btn" onclick="filterFunction()"><img src="/assets/img/catalog.filter2.png" alt="Img"></button>
+            <button class="filter__btn" onclick="filterFunction()"><img src="./assets/img/catalog.filter2.png" alt="Img"></button>
                 <div class="filter__nav-content" id="filter__cont">
                     <select id="mySelect" class="filter-select" onchange="filterItems()">
                         <option id="all" value="all">Все категории</option>
@@ -294,15 +294,15 @@ attr
     <section class="footer">
         <div class="footer__box">
             <ul class="footer__contacts">
-                <img src="/assets/img/black.logo.png" alt="img">
+                <img src="./assets/img/black.logo.png" alt="img">
                 </ul>
             </div>
         <a class='cancelBtn' id='cancelBtn'</a>
             <div class="cc">
                 <a href="#" class="footer__logo">
                 <img src="./assets/img/logo.spotify.png" alt="Img" class="footer__img">
-                <img src="/assets/img/logo.inst.png" alt="Img" class="footer__img1">
-                <img src="/assets/img/logo.ds.png" alt="Img" class="footer__img2">
+                <img src="./assets/img/logo.inst.png" alt="Img" class="footer__img1">
+                <img src="./assets/img/logo.ds.png" alt="Img" class="footer__img2">
             </div>
         </a>
     
@@ -316,7 +316,7 @@ attr
     ` 
     <h1>${attraction.description}</h1>
 
-    <img src="${attraction.imageUrl}"
+    <img src="./${attraction.imageUrl}"
     <h2>fefe</h2>   
     `;
 

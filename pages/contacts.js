@@ -39,7 +39,7 @@ async function ContactsPage() {
     <header class="header">
        
         <div class="header__logo">
-            <a href="/index.html"><img src="./assets/img/black.logo.png" class="header__logo" alt="img"></a>
+            <a href="./index.html?page="><img src="./assets/img/black.logo.png" class="header__logo" alt="img"></a>
         </div>
         <div class="container">
             <div class="header__menu menu">
@@ -50,10 +50,10 @@ async function ContactsPage() {
         </div>
             <nav class="header__nav">
                 <li class="header__link">
-                    <a href="/index.html">На главную</a>
+                    <a href="./index.html?page=">На главную</a>
                 </li>
                 <li class="header__link">
-                    <a href="/catalog.html">Достопримечательности</a>
+                    <a href="./index.html?page=catalog">Достопримечательности</a>
                 </li>
                 </nav>
                 </div>
@@ -131,9 +131,10 @@ async function ContactsPage() {
                             </div>
                         </div>
                                 
-                           
 
                         <!-- <button id="myBtn">Сообщение:</button> -->
+
+                         <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>
 
                         <div id="myModadel" class="modal">
                         
