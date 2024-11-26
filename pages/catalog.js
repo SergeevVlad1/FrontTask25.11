@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <li class="main__card">
                 <div class="main__container-section">
-                <img onclick="download" class='containerId__img' src=./${attraction.imageUrl}> 
+                <img onclick="download" class='containerId__img' src='./${attraction.imageUrl}'> 
                 
                 <a class="main__search" href="#">${attraction.name}</a>
                     </li>
@@ -150,7 +150,7 @@ const detailsContainer = document.getElementById('attractions');
         <div class="containerId">
                 <div class='containerId__title'> <h1>${attraction.name}</h1>
                 </div>
-                <img class='containerId__img' src=./${attraction.imageUrl}>
+                <img class='containerId__img' src='./${attraction.imageUrl}'>
                 <h2 class='containerId__text'>${attraction.description}</h2>
                     <div class='containerId__map'> ${attraction.location}</div>
             <div class='modal__title__img'>
@@ -159,7 +159,7 @@ const detailsContainer = document.getElementById('attractions');
         </div>
                     
                 </div>
-        <a href="./?page=catalog" class="main__button">Вернуться</a> 
+        <a href="" class="main__button">Вернуться</a> 
     `;
     
 window.onload = function() {
