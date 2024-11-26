@@ -109,7 +109,7 @@ const createMainPage = () => {
                     
                 </li>
                 <li class="menu__item">
-                    <a id='catalogBtn' class="menu__link"  href="?page=catalog">Достопримечательности</a>
+                    <a class="menu__link"  href="?page=catalog">Достопримечательности</a>
                 </li>
             </ul>
         </nav>

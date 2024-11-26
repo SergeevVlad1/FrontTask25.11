@@ -148,103 +148,21 @@ async function ContactsPage() {
                           </div>
                         
                         </div>
-
-
-        <style>
-        body1 {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        }
-            
-        .open-modal-btn {
-        background-color: #333;
-        color: white;
-        position: relative;
-        left: 225px;
-        top: 10px;
-        padding: 15px 20px;
-        border: none;
-        align-items: center;
-        max-width: 220px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        font-size: 15px;
-        transition: background-color 0.3s ease;
-        }
-                    
-        .open-modal-btn:hover {
-            background-color: #45a049;
-            }
-                    
-    .modal {
-         display: none;
-         position: fixed;
-        z-index: 1;
-         left: 0;
-         top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-                            }
-                    
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-         width: 80%;
-         max-width: 600px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        position: relative;
-        }
-            
-    .close-modal-btn {
-        color: #aaa;
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-                    
-                            .close-modal-btn:hover,
-                            .close-modal-btn:focus {
-                                color: #000;
-                                text-decoration: none;
-                            }
-                        </style>
-
  
- <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>
-
-
  <div id="myModal" class="modal">
      <div class="modal-content">
-         <span class="close-modal-btn" onclick="closeModal()">&times;</span>
-         <h2>Если вам нужно помощь, не стесняйтесь и заполните модальное окно</h2>
-         <input type="text"  value size="40" class="modal__input_title"  placeholder="Ваше имя">
-                            <input type="email"  value size="40" class="modal__input_title"  placeholder="Ваша почта">
-                            <input type="text"  value size="40" class="modal__input_title1"  placeholder="Сообщение">
-
+        <span class="close-modal-btn" onclick="closeModal()">&times;</span>
+        <h2>Если вам нужно помощь, не стесняйтесь и заполните модальное окно</h2>
+        <input type="text"  value size="40" class="modal__input_title"  placeholder="Ваше имя">
+        <input type="email"  value size="40" class="modal__input_title"  placeholder="Ваша почта">           
+        <input type="text"  value size="40" class="modal__input_title1"  placeholder="Сообщение">
     <button class="success-btn" onclick="showSuccessMessage()">Отправить</button>
-     </div>
- </div>
-
-                            
-    </div>
+        </div>
+    </div>                     
+</div>
      
 
     <section class="footer">
-        
         <div class="footer__box">
             <ul class="footer__contacts">
                 <img src="./assets/img/black.logo.png" alt="img">
