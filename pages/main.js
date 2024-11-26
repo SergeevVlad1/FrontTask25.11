@@ -90,7 +90,7 @@ const createMainPage = () => {
     <header class="header">
         
         <div class="header__logo">
-        <a href="/index.html" class="heder__logo"><img src="./assets/img/logo.svg" alt="img"></a>
+        <a href="./index.html" class="heder__logo"><img src="./assets/img/logo.svg" alt="img"></a>
     </div>
         <div class="container">
             <div class="header__menu menu">
@@ -154,7 +154,7 @@ const createMainPage = () => {
                 <ul class="visit__box1">
                     <div class=".visit__mini-container">
                         <div class=".visit__img">
-                    <img src="./assets/img/img1.png" class="visit__img" alt="img" width="950px">
+                    <img src="./assets/img/img1.svg" class="visit__img" alt="img" width="950px">
                 </div>
                     <div class=".visit__text-box">
                     <div class=".visit__title"><h3>Места которые вы можете посетить:</h3>    </div>
@@ -172,14 +172,14 @@ const createMainPage = () => {
                     <a href="#" class="visit__btn1">Узнать больше</a>
                 </div>
                 <div class="visit_img1">
-                    <img src="./assets/img/img2.png" class="visit__img2" alt="img" width="950px" >
+                    <img src="./assets/img/img2.svg" class="visit__img2" alt="img" width="950px" >
                 </div>
                 </div>
             
             </ul>
                 <ul class="visit__box3">
                     <div class="visit__mini-container2">
-                    <img src="./assets/img/img3.png" alt="img" class="visit__img3" width="950px">
+                    <img src="./assets/img/img3.svg" alt="img" class="visit__img3" width="950px">
                     <div class="visit__text-box1">
                     <div class="visit__title"><h2>Токийская башня (东京塔 ):</h2></div>
                     <div class="visit__text"><h1>Самое высокое сооружение в Японии, с которого открывается захватывающий панорамный вид на Токио. Посетители могут полюбоваться видом с смотровых площадок на высоте 350 и 450 метров. Известна своей архитектурой, панорамным видом на город и несколькими обзорными площадками.</h1></div>
