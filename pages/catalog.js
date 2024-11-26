@@ -150,7 +150,7 @@ const detailsContainer = document.getElementById('attractions');
         <div class="containerId">
                 <div class='containerId__title'> <h1>${attraction.name}</h1>
                 </div>
-                <img class='containerId__img' src=./${attraction.imageUrl}>
+                <img class='containerId__img' src='./${attraction.imageUrl}'>
                 <h2 class='containerId__text'>${attraction.description}</h2>
                     <div class='containerId__map'> ${attraction.location}</div>
             <div class='modal__title__img'>
@@ -159,7 +159,7 @@ const detailsContainer = document.getElementById('attractions');
         </div>
                     
                 </div>
-        <a href="http://127.0.0.1:5500/index.html?page=catalog" class="main__button">Вернуться</a> 
+        <a href="./https://sergeevvlad1.github.io/FrontTask25.11/index?page=catalog" class="main__button">Вернуться</a> 
     `;
     
 window.onload = function() {
