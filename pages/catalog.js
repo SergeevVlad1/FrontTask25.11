@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <li class="main__card">
                 <div class="main__container-section">
-                <img onclick="download" class='containerId__img' src='./${attraction.imageUrl}'> 
+                <img onclick="download" class='containerId__img' src='${attraction.imageUrl}'> 
                 
                 <a class="main__search" href="#">${attraction.name}</a>
                     </li>
