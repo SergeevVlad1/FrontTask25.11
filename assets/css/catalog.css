@@ -61,9 +61,9 @@ li {
 }
 @media (min-width: 2560px) {
   .header__menu-list {
-    display: flex;
-    left: 0;
-    display: block;
+    top: 60px;
+    max-width: 100px;
+    left: -82px;
   }
 }
 .header__menu-list a {

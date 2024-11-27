@@ -59,22 +59,7 @@ const createMainPage = () => {
     // mainPage.innerHTML = ''
 
     const page = `
-            <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="preconnect" href="./https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
-    <link href="./https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="./https://fonts.googleapis.com">
-    <link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
-    <link href="./https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="./https://fonts.googleapis.com">
-    <link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
-    <link href="./https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        
+            ${ImportLinksMain()}
 
     <title>CityDiscvoreries</title>
 </head>
@@ -150,16 +135,17 @@ const createMainPage = () => {
     </div>
         
     <section class="visit">
+    
             <div class="visit__section">
                 <ul class="visit__box1">
-                    <div class=".visit__mini-contaner">
-                       <div class="visit__img">
+                    <div class="visit__mini-container">
+                        <div class="visit__img">
                     <img src="./assets/img/img1.svg" class="visit__img" alt="img" width="950px">
                 </div>
-                    <div class=".visit__text-box">
-                    <div class=".visit__title"><h3>Места которые вы можете посетить:</h3>    </div>
-                    <div class=".visit__text"><h1>Храм Сенсодзи (浅草寺): Самый старый храм в Токио, построенный в 645 году. Помимо красочных ворот Каминаримон, посетители могут пройти по оживленной улице Накамисе-дори, полной сувенирных лавок и ресторанов, и насладиться тишиной храмового комплекса.</h1></div>  
-                        <a href="#" class=".visit__btn">Узнать больше</a>
+                    <div class="visit__text-box">
+                    <div class="visit__title"><h3>Места которые вы можете посетить:</h3>    </div>
+                    <div class="visit__text"><h1>Храм Сенсодзи (浅草寺): Самый старый храм в Токио, построенный в 645 году. Помимо красочных ворот Каминаримон, посетители могут пройти по оживленной улице Накамисе-дори, полной сувенирных лавок и ресторанов, и насладиться тишиной храмового комплекса.</h1></div>  
+                        <a href="#" class="visit__btn">Узнать больше</a>
                         
                 </div>
             </div>
@@ -169,7 +155,7 @@ const createMainPage = () => {
                     <div class="visit__text-box2">
                     <div class="visit__title1"> <h2>Рынок Цукидзи (筑地市场):</h2></div>
                     <div class="visit__text1"><h1>Рынок Цукидзи - это огромный оптовый рынок морепродуктов, расположенный в Токио. Известен своей энергичной атмосферой, свежайшими морепродуктами и знаменитым аукционом тунца. Туристы могут посетить рынок, чтобы полюбоваться на аукцион, попробовать свежий суши и морепродукты, а также купить свежую рыбу, овощи и фрукты.</h1></div>
-                    <a href="#" class="visit__btn1">Узнать больше</a>
+                    <a href="index.html?page=catalog&id=5" class="visit__btn1">Узнать больше</a>
                 </div>
                 <div class="visit_img1">
                     <img src="./assets/img/img2.svg" class="visit__img2" alt="img" width="950px" >
@@ -183,12 +169,13 @@ const createMainPage = () => {
                     <div class="visit__text-box1">
                     <div class="visit__title"><h2>Токийская башня (东京塔 ):</h2></div>
                     <div class="visit__text"><h1>Самое высокое сооружение в Японии, с которого открывается захватывающий панорамный вид на Токио. Посетители могут полюбоваться видом с смотровых площадок на высоте 350 и 450 метров. Известна своей архитектурой, панорамным видом на город и несколькими обзорными площадками.</h1></div>
-                    <a href="#" class="visit__btn">Узнать больше</a>
+                    <a href="index.html?page=catalog&id=6" class="visit__btn">Узнать больше</a>
                 </div>
             </div>  
             </ul>
             </div>
     </section>
+    
 
     <section class="map">
            <div class="map__title">

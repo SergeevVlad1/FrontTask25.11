@@ -445,8 +445,8 @@ p#loading {
 }
 @media (max-width: 375px) {
   .visit__mini-container {
-    display: flex;
-    margin-right: 1000px;
+    position: relative;
+    padding-left: -600px;
   }
 }
 .visit__mini-container1 {

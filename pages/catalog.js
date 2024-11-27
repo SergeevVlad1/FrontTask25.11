@@ -148,7 +148,7 @@ const detailsContainer = document.getElementById('attractions');
         </div>
                     
                 </div>
-        <a href="./index.html?page=catalog  " class="main__button">Вернуться</a> 
+        <a href="./index.html?page=catalog" class="main__button">Вернуться</a> 
     `;
     
 window.onload = function() {
@@ -178,22 +178,10 @@ const CatalogPage = () => {
     
     const attractionId = new URLSearchParams(window.location.search).get('id');
     const page12 = attractionId === null ? 
+
     
     `    
- <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="./assets/css/catalog.css">
-
-     <link rel="preconnect" href="./https://fonts.googleapis.com"> 
- <link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
- <link href="./https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
- <link rel="preconnect" href="./https://fonts.googleapis.com">
- <link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
- <link href="./https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=LXGW+WenKai+TC:wght@300;400;700&display=swap" rel="stylesheet">
- <link rel="preconnect" href="./https://fonts.googleapis.com">
- <link rel="preconnect" href="./https://fonts.gstatic.com" crossorigin>
- <link href="./https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    ${ImportLinksAttractions()}
 
     
     <section class="load">
@@ -220,7 +208,7 @@ const CatalogPage = () => {
                     <a href="./index.html">На главную</a>
                 </li>
                 <li class="header__menu-link">
-                    <a href="./contacts.html">Контакты</a>
+                    <a href="./index.html?page=contacts">Контакты</a>
                 </li>
                 <li class="header__menu-link1">
                     <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
@@ -275,7 +263,7 @@ const CatalogPage = () => {
     </div>
 
  <div id="details" class="details"></div>
-    <h1>Подробная информация</h1>
+    <h1></h1>
     <div id="details" class="details"></div>
 
 attr

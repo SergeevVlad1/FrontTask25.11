@@ -13,7 +13,7 @@ const paths = [
         path: 'catalog',
         createFunc: CatalogPage
     },
-    
+        
 ]
 
 

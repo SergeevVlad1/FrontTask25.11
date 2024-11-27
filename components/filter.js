@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
   const apiUrl1 = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
   const attractionsContainer1 = document.getElementById('attractions1');
@@ -20,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 
-  // Получение данных с MockAPI
+
   fetch(apiUrl1)
       .then(response => response.json())
       .then(data => {
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .catch(error => console.error('Ошибка при получении данных:', error));
 
-  // Обработка события изменения фильтра
+
   categoryFilter.addEventListener('change', function() {
       const selectedCategory = categoryFilter.value;
       if (selectedCategory) {
