@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     
                 <div class="search-box">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
-                    <input class="main__input" placeholder="Найти...">
+                
                 </div>
 
                 <ul class="main__all-sections">
@@ -150,7 +150,7 @@ const detailsContainer = document.getElementById('attractions');
         <div class="containerId">
                 <div class='containerId__title'> <h1>${attraction.name}</h1>
                 </div>
-                <img class='containerId__img' src='./${attraction.imageUrl}'>
+                <img class='containerId__img' src='${attraction.imageUrl}'>
                 <h2 class='containerId__text'>${attraction.description}</h2>
                     <div class='containerId__map'> ${attraction.location}</div>
             <div class='modal__title__img'>
@@ -159,7 +159,7 @@ const detailsContainer = document.getElementById('attractions');
         </div>
                     
                 </div>
-        <a href="" class="main__button">Вернуться</a> 
+        <a href="./index.html?page=catalog  " class="main__button">Вернуться</a> 
     `;
     
 window.onload = function() {
