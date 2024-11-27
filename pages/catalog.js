@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         
         .catch(error => console.error('Ошибка при загрузке данных:', error));
+
             function showDetails(attractionId) {
         let isloading = true
         fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places/${attractionId}`).finally(function () {
@@ -138,7 +139,7 @@ const detailsContainer = document.getElementById('attractions');
                 <div class='containerId__title'> <h1>${attraction.name}</h1>
                 </div>
                 <img class='containerId__img' src='${attraction.imageUrl}'>
-                
+
                 <h2 class='containerId__text'>${attraction.description}</h2>
                     <div class='containerId__map'> ${attraction.location}</div>
             <div class='modal__title__img'>
@@ -324,7 +325,7 @@ attr
  
     
 
-    const catalogBtn = document.getElementById('contactBtn')
+    const contactBtn = document.getElementById('contactBtn')
 
     contactBtn.addEventListener('click', () => {
         window.location.href = '?page=contact'  

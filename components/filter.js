@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function() {
-  const apiUrl1 = './https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
+  const apiUrl1 = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
   const attractionsContainer1 = document.getElementById('attractions1');
   const categoryFilter = document.getElementById('category');
 
