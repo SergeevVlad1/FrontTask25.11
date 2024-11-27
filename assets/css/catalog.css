@@ -59,11 +59,11 @@ li {
   margin-left: -135px;
   max-width: 600px;
 }
-@media (min-width: 2560px) {
+@media (max-width: 375px) {
   .header__menu-list {
     top: 60px;
+    left: -75px;
     max-width: 100px;
-    left: -82px;
   }
 }
 .header__menu-list a {
@@ -73,16 +73,8 @@ li {
 }
 @media (max-width: 1440px) {
   .header__menu-list {
-    width: 1260px;
     display: flex;
     position: relative;
-    left: 100px;
-  }
-}
-@media (max-width: 375px) {
-  .header__menu-list {
-    top: 60px;
-    left: -325px;
   }
 }
 .header__link {
@@ -428,6 +420,8 @@ li {
 .filter__btn {
   border: none;
   cursor: pointer;
+  position: relative;
+  top: -17px;
 }
 @media (max-width: 375px) {
   .filter__btn {
@@ -507,12 +501,14 @@ li {
 .modal__content {
   align-items: center;
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
+  /* 15% from the top and centered */
   padding: 20px;
   top: 150px;
   position: relative;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  /* Could be more or less, depending on screen size */
 }
 .modal__close {
   color: #aaa;
