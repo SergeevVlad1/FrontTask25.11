@@ -1,6 +1,5 @@
 function filterFunction() {
-    document.getElementById('filter__cont').classList.toggle("show");
-    
+    document.getElementById('filter__cont').classList.toggle("show");    
 }
 
 // setTimeout(function(download) {console.log('Загрузка...'); },  8000);
@@ -23,18 +22,6 @@ async function loadData(page) {
     return data;
 }
 
-// function displayCards(data) {
-//     // cardsContainer.innerHTML = '';
-//     data.forEach(item => {
-//         const card = document.createElement('div');
-//         card.className = 'card';
-//         card.innerHTML = `
-//             <h3>${item.name}</h3>
-//             <p>${item.description}</p>
-//         `;
-//         cardsContainer.appendChild(card);
-//     });
-// }
 
 function updatePagination(page) {
     currentPageSpan.textContent = page;
@@ -151,6 +138,7 @@ const detailsContainer = document.getElementById('attractions');
                 <div class='containerId__title'> <h1>${attraction.name}</h1>
                 </div>
                 <img class='containerId__img' src='${attraction.imageUrl}'>
+                
                 <h2 class='containerId__text'>${attraction.description}</h2>
                     <div class='containerId__map'> ${attraction.location}</div>
             <div class='modal__title__img'>

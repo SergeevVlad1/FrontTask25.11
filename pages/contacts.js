@@ -184,7 +184,6 @@ async function ContactsPage() {
 </div>
 </section>
     `
-
     mainPage.innerHTML = page
 
     const catalogBtn = document.getElementById('catalogBtn')

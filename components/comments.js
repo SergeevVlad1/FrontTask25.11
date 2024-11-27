@@ -1041,3 +1041,21 @@
 //                     </select>
 //                 </div>  
 //         </section>
+
+
+
+
+
+
+// function displayCards(data) {
+//     // cardsContainer.innerHTML = '';
+//     data.forEach(item => {
+//         const card = document.createElement('div');
+//         card.className = 'card';
+//         card.innerHTML = `
+//             <h3>${item.name}</h3>
+//             <p>${item.description}</p>
+//         `;
+//         cardsContainer.appendChild(card);
+//     });
+// }
