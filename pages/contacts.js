@@ -1,12 +1,12 @@
 window.onload = function() {
-  document.querySelector('#demoPreloader').style.display = 'none';
-};
+    document.querySelector('#demoPreloader').style.display = 'none';
+    };
 
 
 async function ContactsPage() {
     mainPage.innerHTML = ''
     let attractions = []
-    const resp = await fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places/id')
+    const resp = await fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
     attractions = resp.data
 
     const page = 
@@ -182,7 +182,7 @@ async function ContactsPage() {
     const catalogBtn = document.getElementById('catalogBtn')
 
     catalogBtn.addEventListener('click', () => {
-        window.location.href = '?page=catalog'
+        window.location.href = '?page=catalog='
         checkPathAndRenderPage()
     })
 }

@@ -1,0 +1,1197 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const apiUrl = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
+    const attractionsContainer = document.getElementById('attractions');
+    const categoryFilter = document.getElementById('category');
+    const searchInput = document.getElementById('searchInput');
+    const cardsContainer = document.getElementById('cards-container');
+    const currentPageSpan = document.getElementById('current-page');
+    const prevPageButton = document.getElementById('prev-page');
+    const nextPageButton = document.getElementById('next-page');
+
+    let currentPage = 1;
+    const itemsPerPage = 8;
+    let attractionsData = [];
+
+    async function fetchAttractions(page) {
+        try {
+            const response = await fetch(`${apiUrl}?page=${page}&limit=${itemsPerPage}`);
+            if (!response.ok) {
+                throw new Error('Ошибка при получении данных');
+            }
+            attractionsData = await response.json();
+            displayAttractions(attractionsData);
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+        }
+    }
+
+    function displayAttractions(data) {
+        attractionsContainer.innerHTML = '';
+        data.forEach(attraction => {
+            const attractionElementPageCatalog = document.createElement('div');
+            attractionElementPageCatalog.className = 'attractioN';
+            attractionElementPageCatalog.textContent = attraction.name;
+            attractionElementPageCatalog.innerHTML = `
+                <div class="search-box">
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                </div>
+                <ul class="main__all-sections">
+                    <li class="main__card">
+                        <div class="main__container-section">
+                            <img onclick="download" class='containerId__img' src='${attraction.imageUrl}'>
+                            <a class="main__search" href="#">${attraction.name}</a>
+                        </div>
+                    </li>
+                </ul>
+            `;
+
+            attractionElementPageCatalog.addEventListener('click', () => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('id', attraction.id);
+                window.history.pushState({}, '', url);
+                showDetails(attraction.id);
+            });
+            attractionsContainer.appendChild(attractionElementPageCatalog);
+        });
+    }
+
+    categoryFilter.addEventListener('change', function() {
+        const selectedCategory = categoryFilter.value;
+        if (selectedCategory) {
+            const filteredData = attractionsData.filter(attraction => attraction.category === selectedCategory);
+            displayAttractions(filteredData);
+        } else {
+            fetchAttractions(currentPage);
+        }
+    });
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim();
+        if (query.length > 0) {
+            const filteredData = attractionsData.filter(attraction => attraction.name.toLowerCase().includes(query.toLowerCase()));
+            displayAttractions(filteredData);
+        } else {
+            fetchAttractions(currentPage);
+        }
+    });
+
+    function updatePagination(page) {
+        currentPageSpan.textContent = page;
+        prevPageButton.disabled = page === 1;
+    }
+
+    prevPageButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            fetchAttractions(currentPage).then(() => {
+                updatePagination(currentPage);
+            });
+        }
+    });
+
+    nextPageButton.addEventListener('click', () => {
+        currentPage++;
+        fetchAttractions(currentPage).then(() => {
+            updatePagination(currentPage);
+        });
+    });
+
+    // Загрузка данных при загрузке страницы
+    fetchAttractions(currentPage).then(() => {
+        updatePagination(currentPage);
+    });
+
+    function showDetails(attractionId) {
+        fetch(`${apiUrl}/${attractionId}`)
+            .then(response => response.json())
+            .then(attraction => {
+                const detailsContainer = document.getElementById('attractions');
+                detailsContainer.innerHTML = `
+                    <div id="loader" class="details"></div>
+                    <div class="containerId">
+                        <div class='containerId__title'> <h1>${attraction.name}</h1></div>
+                        <img class='containerId__img' src='${attraction.imageUrl}'>
+                        <h2 class='containerId__text'>${attraction.description}</h2>
+                        <div class='containerId__map'> ${attraction.location}</div>
+                        <button id='comment'>Оставить отзыв</button>
+                        <p>${attraction.comments}</p>
+                        <input id='inputComment'/>
+                        <div id="output"></div>
+                        <div class='modal__title__img'>
+                            <div id='myModal' class='modal'></div>
+                        </div>
+                    </div>
+                    <a href="./index.html?page=catalog" class="main__button">Вернуться</a>
+                `;
+
+                const commentCard = document.getElementById('comment');
+                commentCard.addEventListener('click', () => {
+                    // Добавьте логику для обработки комментариев
+                });
+
+                const userInput = document.getElementById('inputComment');
+                const output = document.getElementById('output');
+                userInput.addEventListener('input', function () {
+                    output.textContent = userInput.value;
+                });
+            })
+            .catch(error => console.error('Ошибка при загрузке данных о достопримечательности:', error));
+    }
+
+    
+    const attractionId = new URLSearchParams(window.location.search).get('id');
+    if (attractionId) {
+        showDetails(attractionId);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  №№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№№========================catalogPage======================================================_______________________________________________________________________---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const cardsContainer = document.getElementById('cards-container');
+// const currentPageSpan = document.getElementById('current-page');
+// const prevPageButton = document.getElementById('prev-page');
+// const nextPageButton = document.getElementById('next-page');
+
+// let currentPage = 1;
+// const itemsPerPage = 2;
+
+// async function loadData(page) {
+//     const response = await fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?page=${page}&limit=${itemsPerPage}`);
+//     const data = await response.json();
+//     return data;
+// }
+
+
+// function updatePagination(page) {
+//     currentPageSpan.textContent = page;
+//     prevPageButton.disabled = page === 1;
+// }
+
+// loadData(currentPage).then(data => {
+//     displayCards(data);
+//     updatePagination(currentPage);
+// });
+
+// prevPageButton.addEventListener('click', () => {
+//     if (currentPage > 1) {
+//         currentPage--;
+//         loadData(currentPage).then(data => {
+//             displayCards(data);
+//             updatePagination(currentPage);
+//         });
+//     }
+// });
+
+// nextPageButton.addEventListener('click', () => {
+//     currentPage++;
+//     loadData(currentPage).then(data => {
+//         displayCards(data);
+//         updatePagination(currentPage);
+//     });
+// });
+
+
+
+// все секции catalog (css) 
+document.addEventListener("DOMContentLoaded", function() {
+    const apiUrl = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
+    const attractionsContainer = document.getElementById('attractions');
+    const categoryFilter = document.getElementById('category');
+    const searchInput = document.getElementById('searchInput');
+    const cardsContainer = document.getElementById('cards-container');
+    const currentPageSpan = document.getElementById('current-page');
+    const prevPageButton = document.getElementById('prev-page');
+    const nextPageButton = document.getElementById('next-page');
+
+    let currentPage = 1;
+    const itemsPerPage = 8;
+    let attractionsData = [];
+
+    async function fetchAttractions(page) {
+        try {
+            const response = await fetch(`${apiUrl}?page=${page}&limit=${itemsPerPage}`);
+            if (!response.ok) {
+                throw new Error('Ошибка при получении данных');
+            }
+            attractionsData = await response.json();
+            displayAttractions(attractionsData);
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+        }
+    }
+
+    function displayAttractions(data) {
+        attractionsContainer.innerHTML = '';
+        data.forEach(attraction => {
+            const attractionElementPageCatalog = document.createElement('div');
+            attractionElementPageCatalog.className = 'attractioN';
+            attractionElementPageCatalog.textContent = attraction.name;
+            attractionElementPageCatalog.innerHTML = `
+                <div class="search-box">
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                </div>
+                <ul class="main__all-sections">
+                    <li class="main__card">
+                        <div class="main__container-section">
+                            <img onclick="download" class='containerId__img' src='${attraction.imageUrl}'>
+                            <a class="main__search" href="#">${attraction.name}</a>
+                        </div>
+                    </li>
+                </ul>
+            `;
+
+            attractionElementPageCatalog.addEventListener('click', () => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('id', attraction.id);
+                window.history.pushState({}, '', url);
+                showDetails(attraction.id);
+            });
+            attractionsContainer.appendChild(attractionElementPageCatalog);
+        });
+    }
+
+    // categoryFilter.addEventListener('change', function() {
+    //     const selectedCategory = categoryFilter.value;
+    //     if (selectedCategory) {
+    //         const filteredData = attractionsData.filter(attraction => attraction.category === selectedCategory);
+    //         displayAttractions(filteredData);
+    //     } else {
+    //         fetchAttractions(currentPage);
+    //     }
+    // });
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim();
+        if (query.length > 0) {
+            const filteredData = attractionsData.filter(attraction => attraction.name.toLowerCase().includes(query.toLowerCase()));
+            displayAttractions(filteredData);
+        } else {
+            fetchAttractions(currentPage);
+        }
+    });
+
+    function updatePagination(page) {
+        currentPageSpan.textContent = page;
+        prevPageButton.disabled = page === 1;
+    }
+
+    prevPageButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            fetchAttractions(currentPage).then(() => {
+                updatePagination(currentPage);
+            });
+        }
+    });
+
+    nextPageButton.addEventListener('click', () => {
+        currentPage++;
+        fetchAttractions(currentPage).then(() => {
+            updatePagination(currentPage);
+        });
+    });
+
+    // Загрузка данных при загрузке страницы
+    fetchAttractions(currentPage).then(() => {
+        updatePagination(currentPage);
+    });
+
+    function showDetails(attractionId) {
+        fetch(`${apiUrl}/${attractionId}`)
+            .then(response => response.json())
+            .then(attraction => {
+                const detailsContainer = document.getElementById('attractions');
+                detailsContainer.innerHTML = `
+                    <div id="loader" class="details"></div>
+                    <div class="containerId">
+                        <div class='containerId__title'> <h1>${attraction.name}</h1></div>
+                        <img class='containerId__img' src='${attraction.imageUrl}'>
+                        <h2 class='containerId__text'>${attraction.description}</h2>
+                        <div class='containerId__map'> ${attraction.location}</div>
+                        <button id='comment'>Оставить отзыв</button>
+                        <p>${attraction.comments}</p>
+                        <input id='inputComment'/>
+                        <div id="output"></div>
+                        <div class='modal__title__img'>
+                            <div id='myModal' class='modal'></div>
+                        </div>
+                    </div>
+                    <a href="./index.html?page=catalog" class="main__button">Вернуться</a>
+                `;
+
+                const commentCard = document.getElementById('comment');
+                commentCard.addEventListener('click', () => {
+                    // Добавьте логику для обработки комментариев
+                });
+
+                const userInput = document.getElementById('inputComment');
+                const output = document.getElementById('output');
+                userInput.addEventListener('input', function () {
+                    output.textContent = userInput.value;
+                });
+            })
+            .catch(error => console.error('Ошибка при загрузке данных о достопримечательности:', error));
+    }
+
+    
+    const attractionId = new URLSearchParams(window.location.search).get('id');
+    if (attractionId) {
+        showDetails(attractionId);
+    }
+});
+
+
+
+
+
+// Backend end
+
+
+
+
+
+// Frontend start
+
+const CatalogPage = () => {
+    mainPage.innerHTML = ''  
+    fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
+    
+    const attractionId = new URLSearchParams(window.location.search).get('id');
+    const page12 = attractionId === null ? 
+
+    
+    `    
+    ${ImportLinksAttractions()}
+    
+    <section class="load">
+        <div class='demoPreloader' id='demoPreloader'>
+    <img src='./assets/img/728.gif' alt='preloader'>
+    </div>
+    </section>
+
+    <header class="header">
+        <div class="header__logo">
+            <a href="./index.html"><img src="./assets/img/black.logo.png" alt="img"></a>
+        </div>
+
+        <div class="container">
+            <div class="header__icon">
+                <span></span>
+                <span></span>
+                <span></span>   
+            </div>
+
+        <nav class="header__menu-body">
+        <div class="filter">
+        <label for="category">Категория:</label>
+        <select id="category">
+            <option value="">Все</option>
+            <option value="category1">Храмы и музеи</option>
+            <option value="category2">Парки</option>
+            <option value="category3">Другое</option>
+        </select>
+            <ul id="itemList" class="header__menu-list">
+            
+                <li class="header__menu-link">
+                    <a href="./index.html">На главную</a>
+                </li>
+                <li class="header__menu-link">
+                    <a href="./index.html?page=contacts">Контакты</a>
+                </li>
+                <li class="header__menu-link1">
+                    <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
+                </li>
+            </ul>
+
+        <nav class="menu__body">
+            <li class="header__menu-link2">
+                <a href="#"><img src="./assets/img/catalog.filter2.png" alt="Img"></a>        
+                    <ul class="menu__list">
+                        <li class="menu__item"><a href="#" class="menu__link">уауауа</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">акак</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">как</a></li>
+                    </ul>          
+                </li>
+            </ul>
+        </nav>
+    </nav>             
+</header>
+
+ 
+
+
+
+<section class="filter">
+    <div class="filter__container">
+        <div class="filter__main">
+            <button class="filter__btn" onclick="filterFunction()"><img src="./assets/img/catalog.filter2.png" alt="Img"></button>
+                <div class="filter__nav-content" id="filter__cont">
+                    <select id="mySelect" class="filter-select" onchange="filterItems()">
+                        <option id="all" value="all">Все категории</option>
+                        <option id="Bla" value="category1">Парки</option>
+                        <option value="category2">Категория 2</option>
+                        <option value="category3">Категория 3</option>
+                    </select>
+                </div>  
+        </section>
+
+    <div class='attractions' id="attractions"></div>
+    <div class='attractionsBtn' id="attractionsBtn"></div>
+    <div id="map"></div>
+
+    <div id='loader'>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn" onclick="closeModal()">&times;</span>
+                <h2>Если вам нужно помощь, не стесняйтесь и заполните модальное окно</h2>
+            <button class="success-btn" onclick="showSuccessMessage()">Отправить</button>
+        </div>
+    </div>
+
+ <div id="details" class="details"></div>
+    <h1></h1>
+    <div id="details" class="details"></div>
+
+attr
+    <section class="str">
+    <div class="str__str">
+        <button class="str__btn"></button>
+    </div>
+    </section> 
+
+
+    <section class="footer">
+        <div class="footer__box">
+            <ul class="footer__contacts">
+                <img src="./assets/img/black.logo.png" alt="img">
+                </ul>
+            </div>
+        <a class='cancelBtn' id='cancelBtn'</a>
+            <div class="cc">
+                <a href="#" class="footer__logo">
+                <img src="./assets/img/logo.spotify.png" alt="Img" class="footer__img">
+                <img src="./assets/img/logo.inst.png" alt="Img" class="footer__img1">
+                <img src="./assets/img/logo.ds.png" alt="Img" class="footer__img2">
+            </div>
+        </a>
+    
+    <div class="footer__text">
+        <h1>© 2024 SityDiscoverires. All Rights Reserved. Design by @Vol0dy_a</h1>\
+    </div>
+</section>
+    
+    ` :
+    // document.body.innerHTML =        // 1 без css 
+    ` 
+    <h1>${attraction.description}</h1>
+
+    <img src="./${attraction.imageUrl}"
+    <h2>fefe</h2>   
+    `;
+
+
+
+
+        if (document.getElementById('catalog-page12')) {
+            document.body.innerHTML = ''
+            document.body.innerHTML += page12
+        }
+        // else (innerHTML = '')
+    
+    
+        window.onload = function() {
+            document.querySelector('#demoPreloader').style.display = 'none';
+            };
+    // const contactBtn = document.getElementById('contactBtn')
+
+    // contactBtn.addEventListener('click', () => {
+    //     window.location.href = '?page=contact'  
+    //     checkPathAndRenderPage()
+    // })
+}
+
+// const searchInput = document.querySelector('.main__input')
+// const cardsList = document.querySelector('main__all-sections')
+// const cards = document.querySelectorAll('.main__card')
+
+// searchInput.addEventListener('input', (event) => {
+//     console.log(event.target.value)
+//     if(event.target.value.length) {
+//         cards.forEach(card => {
+//             card.style.display = 'none'
+            
+//             if(card.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
+//                 card.style.display = 'block'
+                
+//                 console.log('true')
+//             }
+//         })
+//     } else {
+//         cards.forEach(card => {
+//             card.style.display = 'block'
+//         })
+//     }
+    
+// })
+
+// function createSearchFunction(searchInputId, resultsContainerId, apiUrl) {
+//     const searchInput = document.getElementById(searchInputId);
+//     const resultsContainer = document.getElementById(resultsContainerId);
+
+//     searchInput.addEventListener('input', function() {
+//         const query = searchInput.value.trim();
+//         if (query.length > 0) {
+//             searchAttractions(query, apiUrl, resultsContainer);
+//         } else {
+//             resultsContainer.innerHTML = '';
+//         }
+//     });
+// }
+
+// function searchAttractions(query, apiUrl, resultsContainer) {
+//     fetch(`${apiUrl}?search=${encodeURIComponent(query)}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             displayResults(data, resultsContainer);
+//         })
+//         .catch(error => {
+//             console.error('Ошибка при поиске достопримечательностей:', error);
+//         });
+// }
+
+// function displayResults(data, resultsContainer) {
+//     resultsContainer.innerHTML = '';
+//     if (data.length === 0) {
+//         resultsContainer.innerHTML = '<p>Ничего не найдено.</p>';
+//         return;
+//     }
+
+//     data.forEach(attraction => {
+//         const attractionElement = document.createElement('div');
+//         attractionElement.classList.add('attraction');
+//         attractionElement.innerHTML = `
+//             <h3>${attraction.name}</h3>
+//             <p>${attraction.description}</p>
+//         `;
+//         resultsContainer.appendChild(attractionElement);
+//     });
+// }
+
+// // Пример использования функции
+// createSearchFunction('searchInput', 'resultsContainer', 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$CatalogPage$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+
+
+
+
+
+
+
+
+
+// const cardsContainer = document.getElementById('cards-container');
+// const currentPageSpan = document.getElementById('current-page');
+// const prevPageButton = document.getElementById('prev-page');
+// const nextPageButton = document.getElementById('next-page');
+
+// let currentPage = 1;
+// const itemsPerPage = 2;
+
+// async function loadData(page) {
+//     const response = await fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?page=${page}&limit=${itemsPerPage}`);
+//     const data = await response.json();
+//     return data;
+// }
+
+
+// function updatePagination(page) {
+//     currentPageSpan.textContent = page;
+//     prevPageButton.disabled = page === 1;
+// }
+
+// loadData(currentPage).then(data => {
+//     displayCards(data);
+//     updatePagination(currentPage);
+// });
+
+// prevPageButton.addEventListener('click', () => {
+//     if (currentPage > 1) {
+//         currentPage--;
+//         loadData(currentPage).then(data => {
+//             displayCards(data);
+//             updatePagination(currentPage);
+//         });
+//     }
+// });
+
+// nextPageButton.addEventListener('click', () => {
+//     currentPage++;
+//     loadData(currentPage).then(data => {
+//         displayCards(data);
+//         updatePagination(currentPage);
+//     });
+// });
+
+
+
+// все секции catalog (css) 
+document.addEventListener("DOMContentLoaded", function() {
+    const apiUrl = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
+    const attractionsContainer = document.getElementById('attractions');
+    const categoryFilter = document.getElementById('category');
+    const searchInput = document.getElementById('searchInput');
+    const cardsContainer = document.getElementById('cards-container');
+    const currentPageSpan = document.getElementById('current-page');
+    const prevPageButton = document.getElementById('prev-page');
+    const nextPageButton = document.getElementById('next-page');
+
+    let currentPage = 1;
+    const itemsPerPage = 2;
+    let attractionsData = [];
+
+    async function fetchAttractions(page) {
+        try {
+            const response = await fetch(`${apiUrl}?page=${page}&limit=${itemsPerPage}`);
+            if (!response.ok) {
+                throw new Error('Ошибка при получении данных');
+            }
+            attractionsData = await response.json();
+            displayAttractions(attractionsData);
+        } catch (error) {
+            console.error('Ошибка при получении данных:', error);
+        }
+    }
+
+    function displayAttractions(data) {
+        attractionsContainer.innerHTML = '';
+        data.forEach(attraction => {
+            const attractionElementPageCatalog = document.createElement('div');
+            attractionElementPageCatalog.className = 'attractioN';
+            attractionElementPageCatalog.textContent = attraction.name;
+            attractionElementPageCatalog.innerHTML = `
+                <div class="search-box">
+                    <button class="btn-search"><i class="fas fa-search"></i></button>
+                </div>
+                <ul class="main__all-sections">
+                    <li class="main__card">
+                        <div class="main__container-section">
+                            <img onclick="download" class='containerId__img' src='${attraction.imageUrl}'>
+                            <a class="main__search" href="#">${attraction.name}</a>
+                        </div>
+                    </li>
+                </ul>
+            `;
+
+            attractionElementPageCatalog.addEventListener('click', () => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('id', attraction.id);
+                window.history.pushState({}, '', url);
+                showDetails(attraction.id);
+            });
+            attractionsContainer.appendChild(attractionElementPageCatalog);
+        });
+    }
+
+    // categoryFilter.addEventListener('change', function() {
+    //     const selectedCategory = categoryFilter.value;
+    //     if (selectedCategory) {
+    //         const filteredData = attractionsData.filter(attraction => attraction.category === selectedCategory);
+    //         displayAttractions(filteredData);
+    //     } else {
+    //         fetchAttractions(currentPage);
+    //     }
+    // });
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim();
+        if (query.length > 0) {
+            const filteredData = attractionsData.filter(attraction => attraction.name.toLowerCase().includes(query.toLowerCase()));
+            displayAttractions(filteredData);
+        } else {
+            fetchAttractions(currentPage);
+        }
+    });
+
+    function updatePagination(page) {
+        currentPageSpan.textContent = page;
+        prevPageButton.disabled = page === 1;
+    }
+
+    prevPageButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            fetchAttractions(currentPage).then(() => {
+                updatePagination(currentPage);
+            });
+        }
+    });
+
+    nextPageButton.addEventListener('click', () => {
+        currentPage++;
+        fetchAttractions(currentPage).then(() => {
+            updatePagination(currentPage);
+        });
+    });
+
+    // Загрузка данных при загрузке страницы
+    fetchAttractions(currentPage).then(() => {
+        updatePagination(currentPage);
+    });
+
+    function showDetails(attractionId) {
+        fetch(`${apiUrl}/${attractionId}`)
+            .then(response => response.json())
+            .then(attraction => {
+                const detailsContainer = document.getElementById('attractions');
+                detailsContainer.innerHTML = `
+                    <div id="loader" class="details"></div>
+                    <div class="containerId">
+                        <div class='containerId__title'> <h1>${attraction.name}</h1></div>
+                        <img class='containerId__img' src='${attraction.imageUrl}'>
+                        <h2 class='containerId__text'>${attraction.description}</h2>
+                        <div class='containerId__map'> ${attraction.location}</div>
+                        <button id='comment'>Оставить отзыв</button>
+                        <p>${attraction.comments}</p>
+                        <input id='inputComment'/>
+                        <div id="output"></div>
+                        <div class='modal__title__img'>
+                            <div id='myModal' class='modal'></div>
+                        </div>
+                    </div>
+                    <a href="./index.html?page=catalog" class="main__button">Вернуться</a>
+                `;
+
+                const commentCard = document.getElementById('comment');
+                commentCard.addEventListener('click', () => {
+                    // Добавьте логику для обработки комментариев
+                });
+
+                const userInput = document.getElementById('inputComment');
+                const output = document.getElementById('output');
+                userInput.addEventListener('input', function () {
+                    output.textContent = userInput.value;
+                });
+            })
+            .catch(error => console.error('Ошибка при загрузке данных о достопримечательности:', error));
+    }
+
+    
+    const attractionId = new URLSearchParams(window.location.search).get('id');
+    if (attractionId) {
+        showDetails(attractionId);
+    }
+});
+
+
+
+
+
+// Backend end
+
+
+
+
+
+// Frontend start
+
+const CatalogPage = () => {
+    mainPage.innerHTML = ''  
+    fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
+    
+    const attractionId = new URLSearchParams(window.location.search).get('id');
+    const page12 = attractionId === null ? 
+
+    
+    `    
+    ${ImportLinksAttractions()}
+    
+    <section class="load">
+        <div class='demoPreloader' id='demoPreloader'>
+    <img src='./assets/img/728.gif' alt='preloader'>
+    </div>
+    </section>
+
+    <header class="header">
+        <div class="header__logo">
+            <a href="./index.html"><img src="./assets/img/black.logo.png" alt="img"></a>
+        </div>
+
+        <div class="container">
+            <div class="header__icon">
+                <span></span>
+                <span></span>
+                <span></span>   
+            </div>
+
+        <nav class="header__menu-body">
+        <div class="filter">
+        <label for="category">Категория:</label>
+        <select id="category">
+            <option value="">Все</option>
+            <option value="category1">Храмы и музеи</option>
+            <option value="category2">Парки</option>
+            <option value="category3">Другое</option>
+        </select>
+            <ul id="itemList" class="header__menu-list">
+            
+                <li class="header__menu-link">
+                    <a href="./index.html">На главную</a>
+                </li>
+                <li class="header__menu-link">
+                    <a href="./index.html?page=contacts">Контакты</a>
+                </li>
+                <li class="header__menu-link1">
+                    <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
+                </li>
+            </ul>
+
+        <nav class="menu__body">
+            <li class="header__menu-link2">
+                <a href="#"><img src="./assets/img/catalog.filter2.png" alt="Img"></a>        
+                    <ul class="menu__list">
+                        <li class="menu__item"><a href="#" class="menu__link">уауауа</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">акак</a></li>
+                        <li class="menu__item"><a href="#" class="menu__link">как</a></li>
+                    </ul>          
+                </li>
+            </ul>
+        </nav>
+    </nav>             
+</header>
+
+ 
+
+
+
+<section class="filter">
+    <div class="filter__container">
+        <div class="filter__main">
+            <button class="filter__btn" onclick="filterFunction()"><img src="./assets/img/catalog.filter2.png" alt="Img"></button>
+                <div class="filter__nav-content" id="filter__cont">
+                    <select id="mySelect" class="filter-select" onchange="filterItems()">
+                        <option id="all" value="all">Все категории</option>
+                        <option id="Bla" value="category1">Парки</option>
+                        <option value="category2">Категория 2</option>
+                        <option value="category3">Категория 3</option>
+                    </select>
+                </div>  
+        </section>
+
+    <div class='attractions' id="attractions"></div>
+    <div class='attractionsBtn' id="attractionsBtn"></div>
+    <div id="map"></div>
+
+    <div id='loader'>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal-btn" onclick="closeModal()">&times;</span>
+                <h2>Если вам нужно помощь, не стесняйтесь и заполните модальное окно</h2>
+            <button class="success-btn" onclick="showSuccessMessage()">Отправить</button>
+        </div>
+    </div>
+
+ <div id="details" class="details"></div>
+    <h1></h1>
+    <div id="details" class="details"></div>
+
+attr
+    <section class="str">
+    <div class="str__str">
+        <button class="str__btn"></button>
+    </div>
+    </section> 
+
+
+    <section class="footer">
+        <div class="footer__box">
+            <ul class="footer__contacts">
+                <img src="./assets/img/black.logo.png" alt="img">
+                </ul>
+            </div>
+        <a class='cancelBtn' id='cancelBtn'</a>
+            <div class="cc">
+                <a href="#" class="footer__logo">
+                <img src="./assets/img/logo.spotify.png" alt="Img" class="footer__img">
+                <img src="./assets/img/logo.inst.png" alt="Img" class="footer__img1">
+                <img src="./assets/img/logo.ds.png" alt="Img" class="footer__img2">
+            </div>
+        </a>
+    
+    <div class="footer__text">
+        <h1>© 2024 SityDiscoverires. All Rights Reserved. Design by @Vol0dy_a</h1>\
+    </div>
+</section>
+    
+    ` :
+    // document.body.innerHTML =        // 1 без css 
+    ` 
+    <h1>${attraction.description}</h1>
+
+    <img src="./${attraction.imageUrl}"
+    <h2>fefe</h2>   
+    `;
+
+
+
+
+        if (document.getElementById('catalog-page12')) {
+            document.body.innerHTML = ''
+            document.body.innerHTML += page12
+        }
+        // else (innerHTML = '')
+    
+    
+        window.onload = function() {
+            document.querySelector('#demoPreloader').style.display = 'none';
+            };
+    // const contactBtn = document.getElementById('contactBtn')
+
+    // contactBtn.addEventListener('click', () => {
+    //     window.location.href = '?page=contact'  
+    //     checkPathAndRenderPage()
+    // })
+}
+
+// const searchInput = document.querySelector('.main__input')
+// const cardsList = document.querySelector('main__all-sections')
+// const cards = document.querySelectorAll('.main__card')
+
+// searchInput.addEventListener('input', (event) => {
+//     console.log(event.target.value)
+//     if(event.target.value.length) {
+//         cards.forEach(card => {
+//             card.style.display = 'none'
+            
+//             if(card.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
+//                 card.style.display = 'block'
+                
+//                 console.log('true')
+//             }
+//         })
+//     } else {
+//         cards.forEach(card => {
+//             card.style.display = 'block'
+//         })
+//     }
+    
+// })
+
+// function createSearchFunction(searchInputId, resultsContainerId, apiUrl) {
+//     const searchInput = document.getElementById(searchInputId);
+//     const resultsContainer = document.getElementById(resultsContainerId);
+
+//     searchInput.addEventListener('input', function() {
+//         const query = searchInput.value.trim();
+//         if (query.length > 0) {
+//             searchAttractions(query, apiUrl, resultsContainer);
+//         } else {
+//             resultsContainer.innerHTML = '';
+//         }
+//     });
+// }
+
+// function searchAttractions(query, apiUrl, resultsContainer) {
+//     fetch(`${apiUrl}?search=${encodeURIComponent(query)}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             displayResults(data, resultsContainer);
+//         })
+//         .catch(error => {
+//             console.error('Ошибка при поиске достопримечательностей:', error);
+//         });
+// }
+
+// function displayResults(data, resultsContainer) {
+//     resultsContainer.innerHTML = '';
+//     if (data.length === 0) {
+//         resultsContainer.innerHTML = '<p>Ничего не найдено.</p>';
+//         return;
+//     }
+
+//     data.forEach(attraction => {
+//         const attractionElement = document.createElement('div');
+//         attractionElement.classList.add('attraction');
+//         attractionElement.innerHTML = `
+//             <h3>${attraction.name}</h3>
+//             <p>${attraction.description}</p>
+//         `;
+//         resultsContainer.appendChild(attractionElement);
+//     });
+// }
+
+// // Пример использования функции
+// createSearchFunction('searchInput', 'resultsContainer', 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places');
+
+
+
+const cardsContainer = document.getElementById('cards-container');
+const currentPageSpan = document.getElementById('current-page');
+const prevPageButton = document.getElementById('prev-page');
+const nextPageButton = document.getElementById('next-page');
+
+let currentPage = 1;
+const itemsPerPage = 3; // Количество карточек на странице
+
+// Функция для загрузки данных с сервера MockAPI
+async function loadData(page) {
+    const response = await fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?page=${page}&limit=${itemsPerPage}`);
+    const data = await response.json();
+    return data;
+}
+
+// Функция для отображения карточек
+function displayCards(data) {
+    cardsContainer.innerHTML = ''; // Очищаем контейнер
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+        `;
+        cardsContainer.appendChild(card);
+    });
+}
+
+// Функция для обновления пагинации
+function updatePagination(page) {
+    currentPageSpan.textContent = page;
+    prevPageButton.disabled = page === 1;
+    // Здесь можно добавить проверку на последнюю страницу, если известно общее количество элементов
+}
+
+// Загрузка данных при загрузке страницы
+loadData(currentPage).then(data => {
+    displayCards(data);
+    updatePagination(currentPage);
+});
+
+// Обработчик для кнопки "Previous"
+prevPageButton.addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        loadData(currentPage).then(data => {
+            displayCards(data);
+            updatePagination(currentPage);
+        });
+    }
+});
+
+// Обработчик для кнопки "Next"
+nextPageButton.addEventListener('click', () => {
+    currentPage++;
+    loadData(currentPage).then(data => {
+        displayCards(data);
+        updatePagination(currentPage);
+    });
+});
+
+
+// Фильтр
+function displayCards(data) {
+    cardsContainer.innerHTML = ''; 
+    data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>${item.description}</p>
+            
+        `;
+        cardsContainer.appendChild(card);
+    });
+}   
+
+del.addEventListener('click', () => {
+    prompt('Вы точно хотите удалить пользователя?')
+})
+
+
+
+
+
+
+
+<div class="slider-controls">
+    <button class="prev-btn">Предыдущий</button>
+    <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+    <button class="next-btn">Следующий</button>
+</div>
+
+
+
+

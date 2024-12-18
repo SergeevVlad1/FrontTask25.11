@@ -167,7 +167,7 @@ li{
         z-index: 5;
         cursor: pointer;
         
-        span {
+        // span {
             // @media (max-width: 420px){
             //     left: 140px;
             // }
@@ -187,7 +187,8 @@ li{
             //     bottom: 0;
                 
             // }
-        }
+        // }
+    
     
 display: none;
 @media (max-width: 420px){
@@ -276,6 +277,13 @@ display: none;
             
         }
     }
+}
+
+.containerId__title {
+    h1{
+        color: #fff;
+    }
+    color: red;
 }
 
 .header{

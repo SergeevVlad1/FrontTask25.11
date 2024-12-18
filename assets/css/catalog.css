@@ -13,7 +13,9 @@
   cursor: pointer;
   max-width: 126px;
   align-items: center;
-  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .filter-title {
@@ -46,7 +48,6 @@ li {
 
 .header {
   width: 1921px;
-  height: 100px;
   font-family: "Inter";
 }
 .header__logo {
@@ -55,15 +56,15 @@ li {
 }
 .header__menu-list {
   display: flex;
-  margin-top: -40px;
-  margin-left: -135px;
+  /* margin-top: -80px; */
+  /* margin-left: -135px; */
   max-width: 600px;
+  align-items: center;
+  flex-direction: row;
 }
 @media (max-width: 375px) {
   .header__menu-list {
-    top: 60px;
-    left: -75px;
-    max-width: 100px;
+            left: -105px;
   }
 }
 .header__menu-list a {
@@ -461,6 +462,8 @@ li {
 }
 .modal .main__search {
   display: none;
+  display: flex;
+  color: #45a049;
 }
 .modal .pagination {
   display: none;
@@ -650,18 +653,32 @@ li {
   transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .attraction {
   padding-bottom: 20px;
 }
 
+.continerIText {
+  color: darkblue;
+}
+
 .containerId__text {
-  min-width: 600px;
-  max-width: 500px;
+  min-width: 450px;
+  /* max-width: 133px; */
   margin-left: -200px;
   margin-bottom: 20px;
+  padding: 30px;
+  background-color: #77673d;
+  box-shadow: 8px 8px 16px #333;
+  border-radius: 20px;
 }
 @media (max-width: 420px) {
-  .containerId__text {
+  .containerId {
     font-size: 15px;
     max-width: 326px;
     min-width: 10px;
@@ -686,6 +703,7 @@ li {
   }
 }
 .containerId__img {
+  width: 700px;
   margin-bottom: 20px;
   box-shadow: 8px 8px 16px #333;
   cursor: pointer;
@@ -711,12 +729,16 @@ li {
   min-width: 700px;
   margin-left: -100px;
   margin-bottom: 20px;
+  margin-top: 100px;
 }
 @media (max-width: 450px) {
   .containerId__title h1 {
     position: relative;
-    left: -120px;
+    left: -320px;
     font-size: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
 }
 
@@ -738,7 +760,8 @@ li {
 }
 .main__search {
   color: #333;
-  font-family: "LXGW WenKai TC";
+  font-family: "cursive";
+  font-size: 20px;
 }
 .main__revie {
   display: flex;

@@ -1,7 +1,31 @@
+const menu = document.querySelector('.menu__body')
+const menuBtn = document.querySelector('.menu__icon')
+
+const body = document.bpdy;
+
+if (menu && menuBtn) {
+    menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('active')
+        menuBtn.classList.toggle('active')
+        body.classList.toggle('lock')
+    })
+
+
+menu.querySelectorAll('.menu__link').forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.toggle('active')
+        menuBtn.classList.toggle('active')
+        body.classList.toggle('lock')
+    })
+})
+
+}
+
+
+
 window.onload = function () {
     document.querySelector('#demoPreloader').style.display = 'none';
 };
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const slider = document.querySelector('.slider');
@@ -12,13 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let currentIndex = 0;
 
-
     function updateSlider() {
-
         const offset = -currentIndex * 500;
-
         slider.style.transform = `translateX(${offset}px)`;
-
 
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
@@ -26,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     prevBtn.addEventListener('click', () => {
-
         if (currentIndex > 0) {
             currentIndex--;
             updateSlider();
@@ -34,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     nextBtn.addEventListener('click', () => {
-
         if (currentIndex < slides.length - 1) {
             currentIndex++;
             updateSlider();
@@ -43,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-
             currentIndex = index;
             updateSlider();
         });
@@ -51,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateSlider();
 });
-
 
 
 const mainPage = document.getElementById('mainPage')
@@ -64,7 +80,6 @@ const createMainPage = () => {
     <title>CityDiscvoreries</title>
 </head>
 <body>
-
 
     <section class="load">
     <div class='demoPreloader' id='demoPreloader'> -->
@@ -86,12 +101,6 @@ const createMainPage = () => {
             <ul class="menu__list">
                 <li class="menu__item">
                      <a id='contactBtn' class="menu__link" href="#">Контакты</a> 
-
-
-
-
-                     <!-- /////////////////////// -->
-                    
                 </li>
                 <li class="menu__item">
                     <a class="menu__link"  href="?page=catalog">Достопримечательности</a>
@@ -115,24 +124,7 @@ const createMainPage = () => {
 
     </main>
     
-    <div class="slider-container">
-        <div class="slider">
-            <div class="slide"><img src="./assets/img/images.1.svg" alt="Slide 1"></div>
-            <div class="slide"><img src="./assets/img/images.2.svg" alt="Slide 2"></div>
-            <div class="slide"><img src="./assets/img/images.3.svg" alt="Slide 3"></div>
-            <div class="slide"><img src="./assets/img/images.1.svg" alt="Slide 4"></div>
-        </div>
-        <div class="slider-controls">
-            <button class="prev-btn">←</button>
-            <div class="pagination">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-            <button class="next-btn">→</button>
-        </div>
-    </div>
+    
         
     <section class="visit">
     
@@ -176,6 +168,15 @@ const createMainPage = () => {
             </div>
     </section>
     
+<div class="slider-controls">
+    <button class="prev-btn">Предыдущий</button>
+    <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+    <button class="next-btn">Следующий</button>
+</div>
 
     <section class="map">
            <div class="map__title">

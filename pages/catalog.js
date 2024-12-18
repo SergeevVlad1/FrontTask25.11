@@ -1,278 +1,387 @@
-function filterFunction() {
-    document.getElementById('filter__cont').classList.toggle("show");    
-}
-
-// setTimeout(function(download) {console.log('Загрузка...'); },  8000);
-
-window.onload = function() {
-    document.querySelector('#demoPreloader').style.display = 'none';
-};
-
-const cardsContainer = document.getElementById('cards-container');
-const currentPageSpan = document.getElementById('current-page');
-const prevPageButton = document.getElementById('prev-page');
-const nextPageButton = document.getElementById('next-page');
-
-let currentPage = 1;
-const itemsPerPage = 2;
-
-async function loadData(page) {
-    const response = await fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?page=${page}&limit=${itemsPerPage}`);
-    const data = await response.json();
-    return data;
-}
+// import { CatalogPage } from './render.js'
 
 
-function updatePagination(page) {
-    currentPageSpan.textContent = page;
-    prevPageButton.disabled = page === 1;
-}
-
-loadData(currentPage).then(data => {
-    displayCards(data);
-    updatePagination(currentPage);
-});
-
-prevPageButton.addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        loadData(currentPage).then(data => {
-            displayCards(data);
-            updatePagination(currentPage);
-        });
-    }
-});
-
-nextPageButton.addEventListener('click', () => {
-    currentPage++;
-    loadData(currentPage).then(data => {
-        displayCards(data);
-        updatePagination(currentPage);
-    });
-});
-
-
-// Фильтр
-function displayCards(data) {
-    cardsContainer.innerHTML = ''; 
-    data.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h3>${item.name}</h3>
-            <p>${item.description}</p>
-        `;
-        cardsContainer.appendChild(card);
-    });
-}
-
-
-// все секции catalog (css) 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
+    const apiUrl = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
     const attractionsContainer = document.getElementById('attractions');
-    // attractionsContainer.innerHTML = ''; 
-    fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
+    const categoryFilter = document.getElementById('category');
+    const searchInput = document.getElementById('searchInput');
+    const currentPageSpan = document.getElementById('current-page');
+    const prevPageButton = document.getElementById('prev-page');
+    const nextPageButton = document.getElementById('next-page');
+    const sortBySelect = document.getElementById('sortBySelect'); 
+    const ImgSearch = document.getElementById('ImgSearch');
+    const InputSearch = document.getElementById('searchInput');
 
-        .then(response => response.json())
-        .then(data => {
+    let currentPage = 1;
+    const itemsPerPage = 2;
+    let attractionsData = [];
+    
+    const toggleInputVisibility = () => {
+        if (InputSearch.style.display === 'none' || InputSearch.style.display === '') {
+            InputSearch.style.display = 'flex'; 
+        } else {
+            InputSearch.style.display = 'none'; 
+        }
+    };
+    
+    ImgSearch.addEventListener('click', (event) => {
+        event.stopPropagation(); 
+        toggleInputVisibility();
+    });
+    
+    window.addEventListener('click', () => {
+        if (ImgSearch.style.display === 'flex') {
+            InputSearch.style.display = 'none'; 
+        }
+    });
+   
+   
+    class AttractionsFetcher {
+        constructor(apiUrl, itemsPerPage) {
+            this.apiUrl = apiUrl; 
+            this.itemsPerPage = itemsPerPage; 
+        }
+    
+    
+        async fetchAttractions(page) {
+            try {
+                
+                const url = `${this.apiUrl}?page=${page}&limit=${this.itemsPerPage}`;
+                const response = await fetch(url);
+    
 
-            data.forEach(attraction => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при получении данных');
+                }
+    
 
-                const attractionElementPageCatalog = document.createElement('div');
-                attractionElementPageCatalog.className = 'attractioN';
-                attractionElementPageCatalog.textContent = attraction.name;
-                // document.body.innerHTML = ''
-                // document.body.innerHTML += attractionElementPageCatalog
-                attractionElementPageCatalog.innerHTML =  `
-                                    
+                const attractionsData = await response.json();
+
+                this.displayAttractions(attractionsData);
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            }
+        }
+    
+
+        displayAttractions(data) {
+            console.log('Отображение данных:', data);
+        }
+    }
+    
+    
+    const fetcher = new AttractionsFetcher(apiUrl, itemsPerPage);
+    fetcher.fetchAttractions(1);
+    
+    function displayAttractions(data) {
+        attractionsContainer.innerHTML = '';
+        data.forEach(attraction => {
+            const attractionElementPageCatalog = document.createElement('div');
+            attractionElementPageCatalog.className = 'attractioN';
+            attractionElementPageCatalog.textContent = attraction.name;
+            attractionElementPageCatalog.innerHTML = `
                 <div class="search-box">
                     <button class="btn-search"><i class="fas fa-search"></i></button>
-                
                 </div>
-
                 <ul class="main__all-sections">
-                
-                <li class="main__card">
-                <div class="main__container-section">
-                <img onclick="download" class='containerId__img' src='${attraction.imageUrl}'> 
-                
-                <a class="main__search" href="#">${attraction.name}</a>
+                    <li class="main__card">
+                        <div class="main__container-section">
+                            <img class='containerId__img' src='${attraction.imageUrl}'>
+                            <div class='what'> 
+                            <a class="main__search" href="#">${attraction.name}</a>
+                            </div>
+                        </div>
+                    
+                        
                     </li>
                 </ul>
-                </div>
-                <script type="text/javascript" charset="utf-8" async src="./https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8a2946d35bd7706e85ae695793af5773de8985ce103013f41d11e145a0344ee3&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
-                `;
+            `;
 
-                attractionElementPageCatalog.addEventListener('click', () => {
-                    //URL обнов.
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('id', attraction.id);
-                    window.history.pushState({}, '', url);
-                    
-                    showDetails(attraction.id);
-                });
-                attractionsContainer.appendChild(attractionElementPageCatalog);
-            });            
-
-            // query 
-            const attractionId = new URLSearchParams(window.location.search).get('id');
-            if (attractionId) {
-                showDetails(attractionId);
-            }
-        })
-        
-        .catch(error => console.error('Ошибка при загрузке данных:', error));
-
-            function showDetails(attractionId) {
-        let isloading = true
-        fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places/${attractionId}`).finally(function () {
-            isloading = false
-        })
-
-        // css 1 стр обновленная 
-.then(response => response.json())
-.then(attraction => {
-const detailsContainer = document.getElementById('attractions');
-    detailsContainer.innerHTML = `
-    <div id="loader" class="details"></div>
-        <div class="containerId">
-                <div class='containerId__title'> <h1>${attraction.name}</h1>
-                </div>
-                <img class='containerId__img' src='${attraction.imageUrl}'>
-
-                <h2 class='containerId__text'>${attraction.description}</h2>
-                    <div class='containerId__map'> ${attraction.location}</div>
-            <div class='modal__title__img'>
-                <div id='myModal' class='modal' 
-    </div>
-        </div>
-                    
-                </div>
-        <a href="./index.html?page=catalog" class="main__button">Вернуться</a> 
-    `;
-    
-window.onload = function() {
-changeLanguage();
-};  
-
-                //карта map
-const map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: lat, lng: lng},
-    zoom: 15
-    });
-
-new google.maps.Marker({
-    position: { lat: lat, lng: lng},
-    map: map.location,
-    title: attraction.name
-    });
-})
-.catch(error => console.error('Ошибка при загрузке данных о достопримечательности:', error));
+            attractionElementPageCatalog.addEventListener('click', () => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('id', attraction.id);
+                window.history.pushState({}, '', url);
+                showDetails(attraction.id);
+            });
+            attractionsContainer.appendChild(attractionElementPageCatalog);
+        });
     }
-});
 
+    categoryFilter.addEventListener('change', function() {
+        const selectedCategory = categoryFilter.value;
+        if (selectedCategory) {
+            const filteredData = attractionsData.filter(attraction => attraction.category === selectedCategory);
+            displayAttractions(filteredData);
+        } else {
+            fetchAttractions(currentPage);
+        }
+    });
+
+
+            
+            
+        // Очень важно
+        async function fetchAttractions() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error('Ошибка при получении данных');
+                }
+                attractionsData = await response.json();
+                displayAttractions(attractionsData);
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+            }
+        }
+        
+            function sortAttractionsByCategory(data, sortBy) {
+                if (!sortBy) return data;
+        
+                const [field, order] = sortBy.split('_');
+                return data.sort((a, b) => {
+                    if (order === 'asc') {
+                        return a[field] > b[field] ? 1 : -1;
+                    } else {
+                        return a[field] < b[field] ? 1 : -1;
+                    }
+                });
+            }
+        
+        sortBySelect.addEventListener('change', function () {
+            const sortBy = sortBySelect.value;
+            const sortedData = sortAttractionsByCategory(attractionsData, sortBy);
+            displayAttractions(sortedData);
+        });
+    
+        fetchAttractions(); 
+
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim();
+        if (query.length > 0) {
+            const filteredData = attractionsData.filter(attraction => attraction.name.toLowerCase().includes(query.toLowerCase()));
+            displayAttractions(filteredData);
+        } else {
+            fetchAttractions(currentPage);
+        }
+    });
+    
+    function updatePagination(page) {
+        currentPageSpan.textContent = page;
+        prevPageButton.disabled = page === 1;
+    }
+
+    prevPageButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            fetchAttractions(currentPage).then(() => {
+                updatePagination(currentPage);
+            });
+        }
+    });
+
+    
+    nextPageButton.addEventListener('click', () => {
+        currentPage++;
+        fetchAttractions(currentPage).then(() => {
+            updatePagination(currentPage);
+        });
+    });
+    
+    fetchAttractions(currentPage).then(() => {
+        updatePagination(currentPage);
+    });
+    
+        function showDetails(attractionId) {
+            fetch(`${apiUrl}/${attractionId}`)
+                .then(response => response.json())
+                .then(attraction => {
+                    const detailsContainer = document.getElementById('attractions');
+                    detailsContainer.innerHTML = `
+                            <div id="loader" class="details"></div>
+                            <div class="containerId">
+                                <div class='containerId__title'><h1>${attraction.name}</h1></div>
+                                <div class='containerId_text'><h2>${attraction.description}</h2></div>
+                            </div>
+
+                            <div class='containerId__map'>${attraction.location}</div>
+                            <div id="output"></div>
+
+                            
+   
+        
+                        <a href="./index.html?page=catalog" class="main__button">Вернуться</a>`;
+
+        const commentCard = document.getElementById('comment');
+        commentCard.addEventListener('click', () => {
+        });
+
+        const userInput = document.getElementById('inputComment');
+        userInput.addEventListener('input', function () {
+            output.textContent = userInput.value;
+        });
+    })
+}
+    
+    
+        
+    const attractionId = new URLSearchParams(window.location.search).get('id');
+    if (attractionId) {
+        showDetails(attractionId);
+    }
+    });
+
+
+// Backend end
+
+
+// Frontend start
 
 const CatalogPage = () => {
-    mainPage.innerHTML = ''
-    fetch('https://64f732e69d775408495348ae.mockapi.io/api/v1/places')
+    mainPage.innerHTML = ''  
+    fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
     
     const attractionId = new URLSearchParams(window.location.search).get('id');
     const page12 = attractionId === null ? 
 
-    
     `    
-    ${ImportLinksAttractions()}
 
-    
-    <section class="load">
-        <div class='demoPreloader' id='demoPreloader'>
-    <img src='./assets/img/728.gif' alt='preloader'>
-    </div>
-    </section>
+                    <section class="load">
+                        <div class='demoPreloader' id='demoPreloader'>
+                            <img src='./assets/img/728.gif' alt='preloader'>
+                        </div>
+                    </section>
 
-    <header class="header">
-        <div class="header__logo">
-            <a href="./index.html"><img src="./assets/img/black.logo.png" alt="img"></a>
-        </div>
+                    <header class="header">
+                        <div class="header__logo">
+                            <a href="./index.html"><img src="./assets/img/black.logo.png" alt="img"></a>
+                        </div>
 
-        <div class="container">
-            <div class="header__icon">
-                <span></span>
-                <span></span>
-                <span></span>   
-            </div>
+                    <div class="container">
+                        <div class="header__icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>   
+                        </div>  
+                        <nav class="header__menu-body">
+                    </div>
+                </div>
 
-        <nav class="header__menu-body">
-            <ul id="itemList" class="header__menu-list">
-                <li class="header__menu-link">
-                    <a href="./index.html">На главную</a>
-                </li>
-                <li class="header__menu-link">
-                    <a href="./index.html?page=contacts">Контакты</a>
-                </li>
-                <li class="header__menu-link1">
-                    <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
-                </li>
-            </ul>
+                <ul id="itemList" class="header__menu-list">
+                
+                    <li class="header__menu-link">
+                        <a href="./index.html">На главную</a>
+                    </li>
+                    <li class="header__menu-link">
+                        <a href="./index.html?page=contacts">Контакты</a>
+                    </li>
+                    <li id='ImgSearch' class="header__menu-link1">
+                        <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
+                    </li>
+                    <li class="header__menu-link">
+                        <input class ='review__input_search' type="text" id="searchInput" placeholder="Поиск достопримечательностей...">
+                    </li>
+                    <li class="category_label">
+                    <div class="filter">
+                        <label for="category">Категория:</label>
+                            <select class='review__label' id="category">
+                                <option value="">Все</option>
+                                <option value="category1">Храмы и музеи</option>
+                                <option value="category2">Парки</option>
+                                <option value="category3">Другое</option>
+                            </select>
+                        <label for="sortBy">Сортировать по:</label>
+                            <select class='review__label' id="sortBySelect">
+                                <option value="">-- Выберите критерий --</option>
+                                <option value="popularity_asc">Популярность (возрастание)</option>
+                                <option value="popularity_desc">Популярность (убывание)</option>
+                                <option value="name_asc">Имя (А-Я)</option>
+                                <option value="name_desc">Имя (Я-А)</option>
+                            </select>
+    <button class='123' id='modalOpen'>Открыть общую галерию</button>
 
-        <nav class="menu__body">
-            <li class="header__menu-link2">
-                <a href="#"><img src="./assets/img/catalog.filter2.png" alt="Img"></a>        
-                    <ul class="menu__list">
-                        <li class="menu__item"><a href="#" class="menu__link">уауауа</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">акак</a></li>
-                        <li class="menu__item"><a href="#" class="menu__link">как</a></li>
-                    </ul>          
-                </li>
-            </ul>
-        </nav>
-    </nav>             
-</header>
+                    </div>
+                </ul>
 
- 
+                <nav class="menu__body">
+                    <li class="header__menu-link2">
+                            <ul class="menu__list">
+                                <li class="menu__item"><a href="#" class="menu__link">уауауа</a></li>
+                                <li class="menu__item"><a href="#" class="menu__link">акак</a></li>
+                                <li class="menu__item"><a href="#" class="menu__link">как</a></li>
+                            </ul>          
+                        </li>
+                        
+                    </ul>
+                </nav>
+            </nav>             
+        </header>
 
 
-
-<section class="filter">
-    <div class="filter__container">
-        <div class="filter__main">
-            <button class="filter__btn" onclick="filterFunction()"><img src="./assets/img/catalog.filter2.png" alt="Img"></button>
-                <div class="filter__nav-content" id="filter__cont">
-                    <select id="mySelect" class="filter-select" onchange="filterItems()">
-                        <option id="all" value="all">Все категории</option>
-                        <option id="Bla" value="category1">Парки</option>
-                        <option value="category2">Категория 2</option>
-                        <option value="category3">Категория 3</option>
-                    </select>
-                </div>  
+        <section class="filter">
+            <div class="filter__container">
+                <div class="filter__main">
+                    <div class="filter__nav-content" id="filter__cont">
+                        <select id="mySelect" class="filter-select" onchange="filterItems()">
+                            <option id="all" value="all">Все категории</option>
+                            <option id="Bla" value="category1">Парки</option>
+                            <option value="category2">Категория 2</option>
+                            <option value="category3">Категория 3</option>
+                        </select>
+                    </div>  
         </section>
 
     <div class='attractions' id="attractions"></div>
     <div class='attractionsBtn' id="attractionsBtn"></div>
     <div id="map"></div>
-
-    <div id='loader'>
-    </div>
-
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal-btn" onclick="closeModal()">&times;</span>
-                <h2>Если вам нужно помощь, не стесняйтесь и заполните модальное окно</h2>
-            <button class="success-btn" onclick="showSuccessMessage()">Отправить</button>
-        </div>
-    </div>
-
- <div id="details" class="details"></div>
-    <h1></h1>
+    <div id='loader'></div>
     <div id="details" class="details"></div>
 
-attr
-    <section class="str">
-    <div class="str__str">
-        <button class="str__btn"></button>
-    </div>
-    </section> 
+    <div id="categorySearch"></div>
+    <div id="cards-container"></div>
+    <div id="resultsContainer"></div>
+    <div id="attractions"></div>
 
+    <div class="category" id="category"></div>
+    <div id="output"></div>
+   
+    <div id="attractions" class="detaifls"></div>
+    <main id="mainPage"></main>
+
+    <div class="filter"> 
+        <div id="reviews"><!-- Отзывы будут отображаться здесь --></div>
+        
+        <form class='review__form' id="reviewForm">
+            <h1 class='review__title'>Ваши впечатления</h1>
+                <label class='review__label' for="name">Имя:</label>
+                <input class ='review__input' type="text" id="name" name="name" required>
+            <br>
+                <label class='review__label' for="text">Текст отзыва:</label>
+                <textarea class ='review__input' id="text" name="text" required></textarea>
+            <br>
+            <button class='main__button' type="submit">Оставить отзыв</button>
+        </form>
+
+                                        <div class="modal" id="modal">
+                                            <div class="modal_content" id="modal-content">
+                                                <span class="close" id="modalClose">&times</span>
+                                                <div class="slider">
+                                                    <div class="slides">
+                                                        <div class="slide"><img src="https://media.tenor.com/zj3-WWIRT5kAAAAM/cat-scream-lll.gif" alt="cats"></div>
+                                                        <div class="slide"><img src="https://media.tenor.com/euuDGxwTva8AAAAM/happy-birthday-wishes-happy-birthday.gif" alt="cats"></div>
+                                                        <div class="slide"><img src="" alt="cats"></div>
+                                                    </div>
+                                                </div>
+                                        <button class="prev">&#10094</button>
+                                        <button class="next">&#10095</button>
+                                    </div>       
+                                </div>
+                        </div>
+
+    </div>
+
+    <div id="cards-container"></div>
 
     <section class="footer">
         <div class="footer__box">
@@ -289,59 +398,252 @@ attr
             </div>
         </a>
     
+    
+
+
     <div class="footer__text">
         <h1>© 2024 SityDiscoverires. All Rights Reserved. Design by @Vol0dy_a</h1>\
     </div>
+ 
+        <div id="cards-container"></div>
+            <div class="pagination">
+                <button class="previousBtn" id="prev-page">Previous</button>
+                <span class="currentPage" id="current-page">1</span>
+                <button class="nextBtn" id="next-page">Next</button>
+            </div>  
+
+        <div style='display: none;' class="slider-controls">
+            <button class="prev-btn">Предыдущий</button>
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="next-btn">Следующий</button>
+        </div>
+
+        <div id="reviews">
+                                    
+        
+    
+       
+        <div class='slider'></div>
+        <input style='display: none;' type="text" id="inputComment" placeholder="Введите комментарий...">
 </section>
     
-    ` :
-    document.body.innerHTML = ''     // 1 без css 
-    ` 
-    <h1>${attraction.description}</h1>
+`: innerHTML = 
+`
+        <li id='ImgSearch' class="header__menu-link1">
+            <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
+        </li>
 
-    <img src="./${attraction.imageUrl}"
-    <h2>fefe</h2>   
-    `;
 
+        <div id="comment">
+                                
+
+
+        <img src="https://media.tenor.com/zj3-WWIRT5kAAAAM/cat-scream-lll.gif" alt="img" id="modalOpen" class="openModal">
+            <button id="modalOpen2">Modal</button> <!-- Изменили id, чтобы избежать дублирования -->
+            <div class="modal" id="modal">
+                <div class="modal_content" id="modal-content">
+                    <span class="close" id="modalClose">&times;</span>
+                    <div class="slider">
+                        <div class="slides">
+                            <div class="slide"><img src="https://media.tenor.com/zj3-WWIRT5kAAAAM/cat-scream-lll.gif" alt="cats"></div>
+                            <div class="slide"><img src="https://media.tenor.com/euuDGxwTva8AAAAM/happy-birthday-wishes-happy-birthday.gif" alt="cats"></div>
+                            <div class="slide"><img src="" alt="cats"></div>
+                        </div>
+                    </div>
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
+                </div>       
+            </div>
+        <div class="demoPreloader" id="demoPreloader"></div>
+            
+        <div id="resultsContainer"></div>
+        <div id="attractions"></div>
+        <div id="attractions1"></div>
+        <select id="category">
+            <option  value="">Все категории</option>    
+            <option value="category1">Парки</option>
+            <option value="category2">Категория 2</option>
+        </select>
+
+
+
+
+        <div class="category" id="category"></div>
+        <input type="text" id="inputComment" placeholder="Введите комментарий...">
+        <div id="output"></div>
+        
+            <div id="details" class="detaifls"></div>
+            <main id="mainPage"></main>
+
+            <div class="filter">
+                <input  type="text" id="searchInput" placeholder="Поиск достопримечательностей...">
+                
+                <label for="category">Категория:</label>
+                <select id="category">
+                    <option value="">Все</option>
+                    <option value="category1">Храмы и музеи</option>
+                    <option value="category2">Парки</option>
+                    <option value="category3">Другое</option>
+                </select>
+                
+                
+                <form id="reviewForm">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                    <br>
+                    <label for="text">Текст отзыва:</label>
+                    <textarea id="text" name="text" required></textarea>
+                    <br>
+                    <button type="submit">Оставить отзыв</button>
+                </form>
+            
+
+            </div>
+            <div id="attractions"></div>
+            <div id="attractions1"></div>
+            <div id="catalog-page12"></div>
+
+            <div class="slider">
+            <div class="slide" style="background-color: red;">1</div>
+            <div class="slide" style="background-color: green;">2</div>
+            <div class="slide" style="background-color: blue;">3</div>
+        </div>
+        <div class="slider-controls">
+            <button class="prev-btn">Предыдущий</button>
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="next-btn">Следующий</button>
+        </div>
+            
+        <div id="cards-container"></div>
+            <div class="pagination">
+                <button class="previousBtn" id="prev-page">Previous</button>
+                <span class="currentPage" id="current-page">1</span>
+                <button class="nextBtn" id="next-page">Next</button>
+            </div>
+                `
+
+        if (document.getElementById('catalog-page12')) {
+            document.body.innerHTML = ''
+            document.body.innerHTML += page12
+        }
+        // else (innerHTML = '')
     
-
-    if (document.getElementById('catalog-page12')) {
-        document.body.innerHTML = ''
-        document.body.innerHTML += page12
-    }
-    else (innerHTML = '')
- 
-    
-
-    const contactBtn = document.getElementById('contactBtn')
-
-    contactBtn.addEventListener('click', () => {
-        window.location.href = '?page=contact'  
-        checkPathAndRenderPage()
-    })
+        window.onload = function() {
+            document.querySelector('#demoPreloader').style.display = 'none';
+            };
 }
 
-const searchInput = document.querySelector('.main__input')
-const cardsList = document.querySelector('main__all-sections')
-const cards = document.querySelectorAll('.main__card')
-
-// searchInput.addEventListener('input', (event) => {
-//     console.log(event.target.value)
-//     if(event.target.value.length) {
-//         cards.forEach(card => {
-//             card.style.display = 'none'
-            
-//             if(card.textContent.toLowerCase().includes(event.target.value.toLowerCase())) {
-//                 card.style.display = 'block'
-                
-//                 console.log('true')
-//             }
-//         })
-//     } else {
-//         cards.forEach(card => {
-//             card.style.display = 'block'
-//         })
-//     }
+document.addEventListener('DOMContentLoaded', () => {
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewsContainer = document.getElementById('reviews');
     
-// })
+
+    // Функция для загрузки отзывов с сервера
+    async function loadReviews() {
+        try {
+            const response = await fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/comments');
+            const reviews = await response.json();
+            reviewsContainer.innerHTML = ''; 
+            reviews.forEach(review => {
+                addReviewToPage(review);
+            });
+        } catch (error) {
+            console.error('Ошибка при загрузке отзывов:', error);
+        }
+    }
+
+    // Функция для добавления отзыва на страницу
+    function addReviewToPage(review) {
+        const reviewElement = document.createElement('div');
+        reviewElement.className = 'review';
+        if (reviewElement == 'undefined')
+            reviewElement.style.display = 'none';   
+        else
+        reviewElement.innerHTML = `
+            <p><strong>${review.name}</strong></p>
+            <p>${review.text}</p>
+            <button class="deleteReview" data-id="${review.id}">Удалить</button>
+        `;
+        reviewsContainer.appendChild(reviewElement);
+    }
+
+    // async function fetchAttractions() {
+    //     try {
+    //         const response = await fetch(apiUrl);
+    //         if (!response.ok) {
+    //             throw new Error('Ошибка при получении данных');
+    //         }
+    //         attractionsData = await response.json();
+    //         displayAttractions(attractionsData);
+    //     } catch (error) {
+    //         console.error('Ошибка при получении данных:', error);
+    //     }
+    // }
+
+    
+
+    // Обработчик отправки формы
+    reviewForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const text = document.getElementById('text').value;
+
+        if (!name || !text) {
+            alert('Пожалуйста, заполните все обязательные поля.');
+            return;
+        }
+
+        try {
+            const response = await fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, text })
+            });
+
+            if (response.ok) {
+                const newReview = await response.json();
+                addReviewToPage(newReview);
+                reviewForm.reset();
+            } else {
+                alert('Ошибка при добавлении отзыва.');
+            }
+        } catch (error) {
+            console.error('Ошибка при отправке отзыва:', error);
+        }
+    });
+
+    reviewsContainer.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('deleteReview')) {
+            const reviewId = event.target.getAttribute('data-id');
+            try {
+                const response = await fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/comments/${reviewId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadReviews(); 
+                } else {
+                    alert('Ошибка при удалении отзыва.');
+                }
+            } catch (error) {
+                console.error('Ошибка при удалении отзыва:', error);
+            }
+        }
+    });
+    
+
+    loadReviews();
+});
+
 

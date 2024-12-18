@@ -232,6 +232,13 @@ li {
   }
 }
 
+.containerId__title {
+  color: red;
+}
+.containerId__title h1 {
+  color: #fff;
+}
+
 .header {
   width: 2320px;
   height: 600px;
