@@ -21,7 +21,7 @@ async function ContactsPage() {
 </head>
 <body>
 
-    <section class="load">
+    <section style='display: none;' class="load">
         <div class='demoPreloader' id='demoPreloader'>
             <img src='./assets/img/728.gif' alt='preloader'>
         </div>

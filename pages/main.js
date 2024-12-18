@@ -82,7 +82,7 @@ const createMainPage = () => {
 <body>
 
     <section class="load">
-    <div class='demoPreloader' id='demoPreloader'> -->
+    <div style='display: none;' class='demoPreloader' id='demoPreloader'> -->
     <img src='./assets/img/728.gif' alt='preloader'>
     </div>
     </section>

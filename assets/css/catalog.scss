@@ -73,7 +73,7 @@ li {
         display: flex;
     /* margin-top: -80px; */
     /* margin-left: -135px; */
-    /* max-width: 600px; */
+     max-width: 600px; 
     align-items: center;
     flex-direction: row;
     
@@ -96,6 +96,10 @@ li {
            
             display: flex;
             position: relative;
+            margin-left: 72px;
+            flex-direction: column;
+            align-items: center;
+        
             
         }
 
@@ -1485,9 +1489,9 @@ li {
         top: 150px;
 
         @media (max-width: 475px) {
-            left: 0;
-            position: relative;
-            top: 80px;
+            left: -750px;
+        position: relative;
+        top: 80px;
         }
 
     }
@@ -1506,7 +1510,7 @@ li {
 
             @media (max-width: 470px) {
                 position: relative;
-                left: 20px;
+                left: -700px;
             }
         }
     }

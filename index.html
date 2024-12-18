@@ -18,10 +18,10 @@
 
 </head>
 <body>
-    
+<div id="AllContent">
 
-    <label for="sortBy">Сортировать по:</label>
-    <select id="sortBySelect">
+    <label style="display: none;" for="sortBy">Сортировать по:</label>
+    <select style="display: none;" id="sortBySelect">
         <option value="">-- Выберите критерий --</option>
         <option value="popularity_asc">Популярность (возрастание)</option>
         <option value="popularity_desc">Популярность (убывание)</option>
@@ -71,7 +71,7 @@
 <div id="resultsContainer"></div>
 <div id="attractions"></div>
 <div id="attractions1"></div>
-<select id="category">
+<select style="display: none;" id="category">
     <option  value="">Все категории</option>
     <option value="category1">Парки</option>
     <option value="category2">Категория 2</option>
@@ -151,9 +151,6 @@
        
     <div class='slider'></div>
     
-       
-
-    
 <!-- 
     <div class="search-box">
         <button class="btn-search"><i class="fas fa-search"></i></button>
@@ -161,6 +158,7 @@
       </div> -->
     
     <footer class="footershow">footer</footer>
+</div>
 
     <script src="./components/header.js"></script>  
     <script src="./pages/main.js"></script>

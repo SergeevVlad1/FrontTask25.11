@@ -1,6 +1,5 @@
 // import { CatalogPage } from './render.js'
 
-
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = 'https://67320e867aaf2a9aff134756.mockapi.io/api/1/places';
     const attractionsContainer = document.getElementById('attractions');
@@ -43,10 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
             this.itemsPerPage = itemsPerPage; 
         }
     
-    
         async fetchAttractions(page) {
-            try {
-                
+            try { 
                 const url = `${this.apiUrl}?page=${page}&limit=${this.itemsPerPage}`;
                 const response = await fetch(url);
     
@@ -54,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (!response.ok) {
                     throw new Error('Ошибка при получении данных');
                 }
-    
 
                 const attractionsData = await response.json();
 
@@ -107,17 +103,32 @@ document.addEventListener("DOMContentLoaded", function() {
             attractionsContainer.appendChild(attractionElementPageCatalog);
         });
     }
+    
+// let filters = {
+//     category: '',
+//     };
 
-    categoryFilter.addEventListener('change', function() {
-        const selectedCategory = categoryFilter.value;
-        if (selectedCategory) {
-            const filteredData = attractionsData.filter(attraction => attraction.category === selectedCategory);
-            displayAttractions(filteredData);
-        } else {
-            fetchAttractions(currentPage);
-        }
-    });
+// categoryFilter.addEventListener('change', function() {
+//     filters.category = categoryFilter.value;
+//     applyFilters();
+// });
 
+// districtFilter.addEventListener('change', function() {
+//     filters.district = districtFilter.value;
+//     applyFilters();
+// });
+
+// function applyFilters() {
+//     const queryParams = new URLSearchParams(filters).toString();
+//     fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?${queryParams}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             displayAttractions(data);
+//         })
+//         .catch(error => {
+//             console.error('Ошибка при выполнении запроса с фильтрами:', error);
+//         });
+// }
 
             
             
@@ -157,15 +168,65 @@ document.addEventListener("DOMContentLoaded", function() {
         fetchAttractions(); 
 
 
-    searchInput.addEventListener('input', function() {
-        const query = searchInput.value.trim();
-        if (query.length > 0) {
-            const filteredData = attractionsData.filter(attraction => attraction.name.toLowerCase().includes(query.toLowerCase()));
-            displayAttractions(filteredData);
-        } else {
-            fetchAttractions(currentPage);
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.trim();
+            if (query.length > 0) {
+                fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?search=${encodeURIComponent(query)}`) // момент
+                    .then(response => response.json())
+                    .then(data => {
+                        displayAttractions(data);
+                    })
+                    .catch(error => {
+                        console.error('Ошибка при выполнении поискового запроса:', error);
+                    });
+            } else {
+                fetchAttractions(currentPage);
+            }
+        });
+
+        let filters = {
+            category: '',
+            district: '',
+            search: ''
+        };
+
+        categoryFilter.addEventListener('change', function() {
+            filters.category = categoryFilter.value;
+            applyFilters();
+        });
+
+        districtFilter.addEventListener('change', function() {
+            filters.district = districtFilter.value;
+            applyFilters();
+        });
+
+        searchInput.addEventListener('input', function() {
+            filters.search = searchInput.value.trim();
+            applyFilters();
+        });
+
+        function applyFilters() {
+            const queryParams = new URLSearchParams(filters).toString();
+            fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?${queryParams}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayAttractions(data);
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении запроса с фильтрами и поиском:', error);
+                });
         }
-    });
+
+        // function fetchAttractions(page) {
+        //     fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?page=${page}`)
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             displayAttractions(data);
+        //         })
+        //         .catch(error => {
+        //             console.error('Ошибка при получении исходного списка:', error);
+        //         });
+        // }
     
     function updatePagination(page) {
         currentPageSpan.textContent = page;
@@ -208,9 +269,6 @@ document.addEventListener("DOMContentLoaded", function() {
                             <div class='containerId__map'>${attraction.location}</div>
                             <div id="output"></div>
 
-                            
-   
-        
                         <a href="./index.html?page=catalog" class="main__button">Вернуться</a>`;
 
         const commentCard = document.getElementById('comment');
@@ -225,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
     
     
-        
+
     const attractionId = new URLSearchParams(window.location.search).get('id');
     if (attractionId) {
         showDetails(attractionId);
@@ -299,7 +357,7 @@ const CatalogPage = () => {
                                 <option value="name_asc">Имя (А-Я)</option>
                                 <option value="name_desc">Имя (Я-А)</option>
                             </select>
-    <button class='123' id='modalOpen'>Открыть общую галерию</button>
+    <button class='main__button' id='modalOpen'>Открыть общую галерию</button>
 
                     </div>
                 </ul>
@@ -431,7 +489,7 @@ const CatalogPage = () => {
         <input style='display: none;' type="text" id="inputComment" placeholder="Введите комментарий...">
 </section>
     
-`: innerHTML = 
+`: 
 `
         <li id='ImgSearch' class="header__menu-link1">
             <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
@@ -530,10 +588,12 @@ const CatalogPage = () => {
             </div>
                 `
 
-        if (document.getElementById('catalog-page12')) {
-            document.body.innerHTML = ''
-            document.body.innerHTML += page12
-        }
+        // if (document.getElementById('catalog-page12')) {
+        //     document.body.innerHTML = ''
+        //     document.body.innerHTML += page12
+        // }
+        document.body.innerHTML = ''
+        document.body.innerHTML += page12
         // else (innerHTML = '')
     
         window.onload = function() {
@@ -546,7 +606,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const reviewsContainer = document.getElementById('reviews');
     
 
-    // Функция для загрузки отзывов с сервера
     async function loadReviews() {
         try {
             const response = await fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/comments');
@@ -560,7 +619,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Функция для добавления отзыва на страницу
     function addReviewToPage(review) {
         const reviewElement = document.createElement('div');
         reviewElement.className = 'review';
@@ -590,7 +648,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    // Обработчик отправки формы
     reviewForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -608,12 +665,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, text })
+                body: JSON.stringify({ name, text }) 
             });
 
             if (response.ok) {
                 const newReview = await response.json();
-                addReviewToPage(newReview);
+                    (newReview);
                 reviewForm.reset();
             } else {
                 alert('Ошибка при добавлении отзыва.');

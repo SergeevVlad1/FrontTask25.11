@@ -64,7 +64,9 @@ li {
 }
 @media (max-width: 375px) {
   .header__menu-list {
-            left: -105px;
+    top: 60px;
+    left: -75px;
+    max-width: 100px;
   }
 }
 .header__menu-list a {
@@ -76,6 +78,9 @@ li {
   .header__menu-list {
     display: flex;
     position: relative;
+    margin-left: 72px;
+    flex-direction: column;
+    align-items: center;
   }
 }
 .header__link {
@@ -988,7 +993,7 @@ li {
 }
 @media (max-width: 475px) {
   .footer__logo {
-    left: 0;
+    left: -750px;
     position: relative;
     top: 80px;
   }
@@ -1005,7 +1010,7 @@ li {
 @media (max-width: 470px) {
   .footer__text h1 {
     position: relative;
-    left: 20px;
+    left: -700px;
   }
 }
 .footer__img {
