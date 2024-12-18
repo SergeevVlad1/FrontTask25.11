@@ -766,7 +766,7 @@ li {
 @media (max-width: 450px) {
   .containerId__title h1 {
     position: relative;
-    left: -320px;
+    left: -280px;
     font-size: 40px;
     align-items: center;
     justify-content: center;

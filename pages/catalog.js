@@ -151,7 +151,7 @@ fetchAttractions();
         searchInput.addEventListener('input', function() {
             const query = searchInput.value.trim();
             if (query.length > 0) {
-                fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?search=${encodeURIComponent(query)}`) // момент
+                fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?search=${encodeURIComponent(query)}`) 
                     .then(response => response.json())
                     .then(data => {
                         displayAttractions(data);
