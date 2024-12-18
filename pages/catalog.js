@@ -25,9 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     
     ImgSearch.addEventListener('click', (event) => {
-        event.stopPropagation(); 
+        event.stopPropagation();
         toggleInputVisibility();
     });
+    
     
     window.addEventListener('click', () => {
         if (ImgSearch.style.display === 'flex') {
@@ -104,35 +105,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-// let filters = {
-//     category: '',
-//     };
-
-// categoryFilter.addEventListener('change', function() {
-//     filters.category = categoryFilter.value;
-//     applyFilters();
-// });
-
-// districtFilter.addEventListener('change', function() {
-//     filters.district = districtFilter.value;
-//     applyFilters();
-// });
-
-// function applyFilters() {
-//     const queryParams = new URLSearchParams(filters).toString();
-//     fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?${queryParams}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             displayAttractions(data);
-//         })
-//         .catch(error => {
-//             console.error('Ошибка при выполнении запроса с фильтрами:', error);
-//         });
-// }
-
-            
-            
-        // Очень важно
+                    
+        // Render
         async function fetchAttractions() {
             try {
                 const response = await fetch(apiUrl);
@@ -146,26 +120,32 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-            function sortAttractionsByCategory(data, sortBy) {
-                if (!sortBy) return data;
-        
-                const [field, order] = sortBy.split('_');
-                return data.sort((a, b) => {
-                    if (order === 'asc') {
-                        return a[field] > b[field] ? 1 : -1;
-                    } else {
-                        return a[field] < b[field] ? 1 : -1;
-                    }
-                });
+function fetchSortedAttractions(sortBy) {
+    const [field, order] = sortBy.split('_');
+
+    const url = `${apiUrl}?sortBy=${field}&order=${order}`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка при получении данных');
             }
-        
-        sortBySelect.addEventListener('change', function () {
-            const sortBy = sortBySelect.value;
-            const sortedData = sortAttractionsByCategory(attractionsData, sortBy);
-            displayAttractions(sortedData);
+            return response.json();
+        })
+        .then(data => {
+            displayAttractions(data);
+        })
+        .catch(error => {
+            console.error('Ошибка при выполнении запроса:', error);
         });
-    
-        fetchAttractions(); 
+}
+
+sortBySelect.addEventListener('change', function () {
+    const sortBy = sortBySelect.value;
+    fetchSortedAttractions(sortBy);
+});
+
+fetchAttractions();
 
 
         searchInput.addEventListener('input', function() {
@@ -200,10 +180,14 @@ document.addEventListener("DOMContentLoaded", function() {
             applyFilters();
         });
 
+        
+
         searchInput.addEventListener('input', function() {
             filters.search = searchInput.value.trim();
             applyFilters();
         });
+
+        
 
         function applyFilters() {
             const queryParams = new URLSearchParams(filters).toString();
@@ -216,17 +200,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.error('Ошибка при выполнении запроса с фильтрами и поиском:', error);
                 });
         }
-
-        // function fetchAttractions(page) {
-        //     fetch(`https://67320e867aaf2a9aff134756.mockapi.io/api/1/places?page=${page}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             displayAttractions(data);
-        //         })
-        //         .catch(error => {
-        //             console.error('Ошибка при получении исходного списка:', error);
-        //         });
-        // }
     
     function updatePagination(page) {
         currentPageSpan.textContent = page;
@@ -291,11 +264,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-// Backend end
-
-
-// Frontend start
-
 const CatalogPage = () => {
     mainPage.innerHTML = ''  
     fetch('https://67320e867aaf2a9aff134756.mockapi.io/api/1/places')
@@ -338,7 +306,7 @@ const CatalogPage = () => {
                         <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
                     </li>
                     <li class="header__menu-link">
-                        <input class ='review__input_search' type="text" id="searchInput" placeholder="Поиск достопримечательностей...">
+                        <input style class ='review__input_search' type="text" id="searchInput" placeholder="Поиск достопримечательностей...">
                     </li>
                     <li class="category_label">
                     <div class="filter">
@@ -357,7 +325,7 @@ const CatalogPage = () => {
                                 <option value="name_asc">Имя (А-Я)</option>
                                 <option value="name_desc">Имя (Я-А)</option>
                             </select>
-    <button class='main__button' id='modalOpen'>Открыть общую галерию</button>
+    <button class='main__button' id='modalOpen'>Открыть общую галлерею</button>
 
                     </div>
                 </ul>
@@ -397,7 +365,7 @@ const CatalogPage = () => {
     <div id="details" class="details"></div>
 
     <div id="categorySearch"></div>
-    <div id="cards-container"></div>
+    <div class='paginate__cards' id="cards-container"></div>
     <div id="resultsContainer"></div>
     <div id="attractions"></div>
 
@@ -588,13 +556,9 @@ const CatalogPage = () => {
             </div>
                 `
 
-        // if (document.getElementById('catalog-page12')) {
-        //     document.body.innerHTML = ''
-        //     document.body.innerHTML += page12
-        // }
+        
         document.body.innerHTML = ''
         document.body.innerHTML += page12
-        // else (innerHTML = '')
     
         window.onload = function() {
             document.querySelector('#demoPreloader').style.display = 'none';
@@ -632,19 +596,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         reviewsContainer.appendChild(reviewElement);
     }
-
-    // async function fetchAttractions() {
-    //     try {
-    //         const response = await fetch(apiUrl);
-    //         if (!response.ok) {
-    //             throw new Error('Ошибка при получении данных');
-    //         }
-    //         attractionsData = await response.json();
-    //         displayAttractions(attractionsData);
-    //     } catch (error) {
-    //         console.error('Ошибка при получении данных:', error);
-    //     }
-    // }
 
     
 

@@ -33,17 +33,7 @@
     </div>
     <div class="catalogBtn" id='catalogBtn'></div>
 
-    <!-- <div id="cards-container"></div>
-<div>
-    <button id="prev-page">Previous</button>
-    <span id="current-page">1</span>
-    <button id="next-page">Next</button>
-</div> -->
 
-
-    
-
-    <!-- <img src="https://media.tenor.com/zj3-WWIRT5kAAAAM/cat-scream-lll.gif" alt="img" id="modalOpen" class="openModal"> -->
 
     <div class="modal" id="modal">
         <div class="modal_content" id="modal-content">
@@ -61,38 +51,30 @@
         </div>       
     </div>
 
-
-
     <div class="attractions1" id="attractions1"></div>
-    <!-- <img src="./assets/img/catalog.img2.png" alt="img"> -->
    
 <div class="demoPreloader" id="demoPreloader"></div>
 <div id="ImgSearch"></div>
 <div id="resultsContainer"></div>
 <div id="attractions"></div>
 <div id="attractions1"></div>
+
 <select style="display: none;" id="category">
     <option  value="">Все категории</option>
     <option value="category1">Парки</option>
     <option value="category2">Категория 2</option>
-    
 </select>
+
 <div class="category" id="category"></div>
-<!-- <input type="text" id="inputComment" placeholder="Введите комментарий..."> -->
 <div id="output"></div>
    
     <div id="attractions" class="detaifls"></div>
     <div id="details" class="detaifls"></div>
-    <main id="mainPage">
-
-
-
-
-    </main>
+    <main id="mainPage"></main>
     <div id="map"></div>
     <div id="comment"></div>
 
-    <div class="filter">
+<div class="filter">
         <input type="text" id="searchInput" placeholder="Поиск достопримечательностей...">
         
         <label for="category">Категория:</label>
@@ -104,8 +86,9 @@
         </select>
         
         <div id="reviews">
-            <!-- Отзывы будут отображаться здесь -->    
+
         </div>
+
         <form id="reviewForm">
             <label for="name">Имя:</label>
             <input type="text" id="name" name="name" required>
@@ -116,46 +99,25 @@
             <button type="submit">Оставить отзыв</button>
         </form>
     
+</div>
 
-    </div>
     <div id="attractions"></div>
     <div id="attractions1"></div>
-    <div id="catalog-page12"></div>
-
-    <!-- <div class="slider">
-    <div class="slide" style="background-color: red;">1</div>
-    <div class="slide" style="background-color: green;">2</div>
-    <div class="slide" style="background-color: blue;">3</div>
-</div> -->
-
-    
+    <div id="catalog-page12"></div>    
     <div id="cards-container"></div>
         <div class="pagination">
             <button class="previousBtn" id="prev-page">Previous</button>
             <span class="currentPage" id="current-page">1</span>
             <button class="nextBtn" id="next-page">Next</button>
     </div>
-
-    <!-- <div class="inputSearchMain"></div> -->
-
-    <!-- <div class="slider-controls">
-        <button class="prev-btn">Предыдущий</button>
-        <div class="dots">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-        </div>
-        <button class="next-btn">Следующий</button>
-    </div> -->
     
-       
     <div class='slider'></div>
+
+    <div class="loader" id="loader">Загрузка...</div>
+  <div class="pagination">
+    <button id="loadMoreBtn">Следующая страница</button>
+  </div>
     
-<!-- 
-    <div class="search-box">
-        <button class="btn-search"><i class="fas fa-search"></i></button>
-        <input class="main__input" placeholder="Найти...">
-      </div> -->
     
     <footer class="footershow">footer</footer>
 </div>
@@ -165,10 +127,8 @@
     <script src="./pages/contacts.js"></script> 
     <script src="./pages/catalog.js"></script>
     <script src="./components/filter.js"></script>
-    <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A8a2946d35bd7706e85ae695793af5773de8985ce103013f41d11e145a0344ee3&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>   -->
-    <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A15f674b5dd89721b6e525770f7376c617e2d3cee2c6b4d697068b6691fd947f3&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script> -->
     <script src="./pages/index.js"></script>
     <script src="./components/galery.js"></script>
-    <!-- <script src='./components/pagination.js'></script> -->
+    <script src='./components/pagination.js'></script>
 </body>
 </html>

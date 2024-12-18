@@ -49,7 +49,16 @@ li {
     color: #a16901;
 }
 
+.pagination{
+    
+    display: flex;
+}
 
+.paginate__cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .header {
 
 
@@ -71,11 +80,12 @@ li {
 
     &__menu-list {
         display: flex;
-    /* margin-top: -80px; */
+    margin-top: -80px; 
     /* margin-left: -135px; */
      max-width: 600px; 
     align-items: center;
     flex-direction: row;
+    gap: 20px;
     
 
         @media (max-width: 375px) {
@@ -99,6 +109,8 @@ li {
             margin-left: 72px;
             flex-direction: column;
             align-items: center;
+    top: 100px;
+
         
             
         }
@@ -374,8 +386,18 @@ li {
 
     &__menu-link {
         @media (max-width: 425px) {
-            display: none;
+            // display: none;
+            position: relative;
+            left: 100px;
         }
+    }
+
+    &__menu-link1{
+        @media (max-width: 425px) {
+            position: relative;
+        left: 85px; 
+        }
+        
     }
 
     &__menu-link2 {

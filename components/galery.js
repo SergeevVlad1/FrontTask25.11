@@ -37,4 +37,4 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = (currentIndex < 2) ? currentIndex + 1 : 0;
         showSlide(currentIndex);
     });
-});//k
+});

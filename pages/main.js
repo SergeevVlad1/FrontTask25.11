@@ -168,7 +168,7 @@ const createMainPage = () => {
             </div>
     </section>
     
-<div class="slider-controls">
+<div style='display: none;' class="slider-controls">
     <button class="prev-btn">Предыдущий</button>
     <div class="dots">
         <span class="dot"></span>
@@ -191,7 +191,7 @@ const createMainPage = () => {
     <footer class="footer">
             <div class="footer__box">
                 <ul class="footer__contacts">
-                    <h1>Контакты:</h1>
+                    <h1 style='display: none;'>Контакты:</h1>
                     <div class="aa">
                         <a class="footer__btn" href="http://127.0.0.1:5500/index.html?page=contacts">Подробная информация</a>
                     </div>
