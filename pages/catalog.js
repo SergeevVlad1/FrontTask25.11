@@ -462,7 +462,8 @@ const CatalogPage = () => {
         <li id='ImgSearch' class="header__menu-link1">
             <a href="#"><img src="./assets/img/catalog.lupa.png" alt="Img"></a>
         </li>
-
+        <h1>Ошибка при прогрузке страницы<br>Error 404</h1>
+    <a style='margin-top: 200px;' href="./index.html?page=catalog" class="main__button">Вернуться</a>
 
         <div id="comment">
                                 
