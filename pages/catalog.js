@@ -242,7 +242,7 @@ fetchAttractions();
                             <div class='containerId__map'>${attraction.location}</div>
                             <div id="output"></div>
 
-                        <a href="./index.html?page=catalog" class="main__button">Вернуться</a>`;
+                        <a style='margin-top: 200px;' href="./index.html?page=catalog" class="main__button">Вернуться</a>`;
 
         const commentCard = document.getElementById('comment');
         commentCard.addEventListener('click', () => {

@@ -58,6 +58,13 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 420px){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        }
 }
 .header {
 
